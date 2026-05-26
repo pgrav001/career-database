@@ -1,0 +1,5 @@
+# Per-application detail files live here.
+#
+# Naming: {YYYY-MM-DD}-{company}-{role-shorthand}.md
+# Each file captures: job link, recruiter contact, application path, interview cycle notes,
+# follow-ups owed, decision rationale. The tracker.md is the index; these are the details.
