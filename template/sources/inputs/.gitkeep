@@ -1,0 +1,4 @@
+# Drop raw source materials in this directory.
+#
+# When you add a source, add a row to ../inventory.md.
+# When you've mined it into the right layers, mark the row [x].
