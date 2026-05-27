@@ -69,6 +69,57 @@ Each strength must:
 
 Strengths are **scaffolding**, not stone. They get refined as the substrate accumulates. The Open Recall section of `strengths.md` is where pressure-test thoughts live until they resolve.
 
+## Honest bounded framing: "X landed, Y did not"
+
+The most credible version of any claim names both what worked **and** what was attempted but didn't land.
+
+Most databases drift toward maximizing the claim — every initiative becomes a clean win, every promotion becomes part of a pattern. The result reads as too tidy. Recruiters and hiring managers are pattern-matching for *real* leaders, not flawless ones. The honest bounded version of a claim is more credible than the maximized one.
+
+Example pattern: **"Precedent broken, playbook not formalized."**
+
+- **The maximized version:** "Permanently raised the discipline's ceiling — created a precedent + documented the archetype for future promotions."
+- **The honest version:** "Promoted the first IC at this level in the discipline (precedent landed). The general archetype documentation for future cases didn't happen — got crowded out by execution priorities."
+
+Both versions describe the same outcome. The honest one is more believable because it acknowledges the part that didn't get done. It also pre-empts the natural follow-up question ("did you formalize this so others can follow?") with a credible answer instead of an evasion.
+
+**When to apply:**
+
+- Discipline-shaping outcomes — name what shifted *and* what didn't shift
+- Multi-year bets — name the wins *and* the things that fell off the roadmap
+- Cross-org influence work — name the orgs that adopted *and* the ones that didn't
+- Talent development — name the people who grew *and* the trajectories that didn't materialize
+
+**How to capture:**
+
+In evidence files, use a "What landed / What didn't" framing or an explicit "Honest bounded framing" subsection. In themes, the "When it shows weakness (anti-pattern)" section of each strength file is the natural home for the honest counter-narrative.
+
+This is also the right place to land **anti-claims** — things you've explicitly chosen *not* to claim. "I'm not the polished communicator at scale" is a credible thing to know about yourself; it tells the reader you understand your own pattern.
+
+## Paired-thesis pattern (related-but-distinct positioning claims)
+
+Sometimes the user's positioning resolves into **two related-but-distinct top-level claims** that work better together than collapsed into one.
+
+Example: a user whose core thesis is "I run incident response when a release goes sideways" might also articulate "I build the engineering culture where releases go sideways less often." These aren't the same claim:
+- The first frames the user as the *responder* — the person you want on-call when production breaks
+- The second frames the user as the *culture-builder* — the person who prevents the breakage in the first place
+
+They overlap (same body of work, same evidence base), but they land hardest at different audiences (an SRE leadership role vs. a head-of-engineering role). Collapsing them to one loses leverage; treating them as competitors creates confusion.
+
+**Capture both** in `identity.md` under the core thesis section. Mark them as paired. Use them together in artifacts — the first as the primary thesis, the second as the broader framing that lands when the audience isn't AI-specific.
+
+**When to look for a paired thesis:**
+
+- The user delivers two related-but-distinct framings of the same work in the same conversation
+- One framing lands hardest at one type of company; the other at a different type
+- One is a sharper / narrower version of the other
+- Both are defensible with the same evidence base, just framed differently
+
+**When NOT to use:**
+
+- If two framings are actually competing (mutually exclusive), pick one — don't bake the indecision into the database.
+- If two framings are saying the same thing differently, collapse them.
+- More than two top-level theses is usually a sign you haven't found the through-line yet.
+
 ## What this is NOT
 
 - **Not a chronological resume.** Chronology is one layer; the headline layer is the strengths.

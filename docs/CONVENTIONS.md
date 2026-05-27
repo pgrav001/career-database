@@ -109,6 +109,34 @@ Inline provenance flags on individual claims, when the difference matters:
 
 For evidence frontmatter, the `confidence:` field handles the headline metric. For other claims in the body, inline notes work.
 
+### Three-tier provenance distinction (when it matters)
+
+For claims that will go into outward-facing artifacts, distinguish:
+
+| Tier | What it is | Example | When to use |
+|---|---|---|---|
+| **Source-grade** | Backed by a document, press article, system of record, or other independently-verifiable source | "Product launched Aug 2025, covered by UploadVR + Road to VR + the company's own dev blog" | Anything a recruiter could verify by Googling. Strongest claim type. |
+| **Subject-attested** | The user told you, but no source backs it | "The retrieval layer behind the launched product was my team's work" — true per the user, but the press doesn't say so | Most database content. Mark explicitly when adjacent claims are source-grade so the boundary is clear. |
+| **Inferred** | You (the AI) reasoned to it from other captures | "Therefore the user was probably the technical lead" | **Don't.** Don't write inferred content into the database unless you flag it as inference *and* the user confirms. Inference baked in as fact is how databases drift. |
+
+This isn't a frontmatter field — it's a discipline applied in the body of evidence files, especially where source-grade and subject-attested claims sit next to each other. Make the boundary explicit so future-you can tell what's externally verifiable.
+
+### Don't infer narrative from factual corrections
+
+When the user corrects a fact in the database (a level, a title, a date, a name), correct **only the fact**. Don't bake in narrative implications they didn't authorize.
+
+Example of the failure mode: the user says "actually X was IC6, not IC7." A response that propagates the correction *plus* reframes them as a "talent I couldn't fully advance" story is two changes, only one of which was authorized. The factual correction is in scope; the narrative reframe is not.
+
+Stick to facts on corrections. Let the user author narrative.
+
+### Source ambiguity → confirm, don't infer
+
+When source text ambiguously attributes an outcome to multiple people, ask the user rather than infer.
+
+Example: a self-review sentence reads *"X and Y - grew the first technical IC7 in the company. X taking a role as [scope A] and Y taking a direct role in [scope B]."* This sentence is genuinely ambiguous — it could mean both X and Y reached IC7, or it could mean only X did and Y was promoted to a different level / scope. Mining sessions that infer "both got IC7" can propagate that inference across many files before someone catches it.
+
+When you encounter sentence-level ambiguity in source text about who got which outcome, pause and ask. The minute of clarification saves an hour of correction-propagation later.
+
 ## Naming conventions
 
 - **Files:** lowercase, kebab-case, role-prefixed when ambiguous

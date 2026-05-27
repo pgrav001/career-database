@@ -57,6 +57,25 @@ Every session, regardless of task:
 - **Date conversion:** convert relative dates ("Thursday", "last week") to absolute dates (ISO `YYYY-MM-DD`) before writing them down.
 - **Don't invent.** When something is unknown, leave a placeholder and add it to `OPEN_QUESTIONS.md` — don't fill the gap with plausible-sounding fiction.
 
+## Step 4.5 — Cross-session memory (complement to the database)
+
+The database is **content** — facts, claims, evidence, voice, history. It belongs in the user's working directory and they own it.
+
+Some things should persist across sessions but don't belong in the database:
+
+- **Behavioral preferences** ("this user wants single open questions, not bullet-list probes")
+- **Provenance lessons learned** ("when correcting a fact, don't infer narrative implications")
+- **Workflow patterns proven out for this user** ("their performance-review archive lives at X; the interview mode works best in 15–20 min summary-back cycles")
+- **Process-level corrections from earlier sessions** that future sessions shouldn't re-discover
+
+These are **how-to-work-with-this-user** memories, not content about the user's career. If the runtime supports cross-session memory (e.g., Claude Code's `.claude/projects/*/memory/` system), write these there as small typed files (`feedback_*.md`, `reference_*.md`) with an index pointer in `MEMORY.md`.
+
+Distinction to maintain:
+- **Database content** ("the user's patent is titled X, awarded provisional status YYYY-MM, mechanism is Y") → goes in `~/career/`
+- **Cross-session behavior** ("this user prefers comprehensive-arc over granular-mechanics in interviews; pivot quickly when they signal in-the-weeds") → goes in cross-session memory
+
+Behavioral memory is the discipline that lets future sessions skip re-learning lessons the user has already taught you. Both layers compound; neither replaces the other.
+
 ## Step 5 — End-of-session ritual
 
 Before ending a session:
