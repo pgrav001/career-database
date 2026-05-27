@@ -69,7 +69,9 @@ See [`docs/CONVENTIONS.md`](docs/CONVENTIONS.md) for full detail. Highlights:
 See [`docs/WORKFLOWS.md`](docs/WORKFLOWS.md) for full detail. Major ones:
 
 - **Source mining:** drop raw artifact (resume, performance review, LinkedIn export) into `sources/inputs/`, add to `sources/inventory.md`, mine into the right layers
+- **Interview / brain-dump:** when the user wants to brain-dump an era or project in real time — the AI is scribe + interviewer, capturing verbatim into voice files and flushing at natural breakpoints
 - **Artifact generation:** lead with claim → pull proof → match voice → reference theme framing
+- **Audit / consistency check:** periodically compare the database against source materials to surface drift, missing items, framing inconsistencies; report-only deliverable
 - **Session ritual:** start by reading `SESSION.md` + `OPEN_QUESTIONS.md`; end by updating `SESSION.md` + moving answered items + logging structural decisions in `DECISIONS.md`
 
 ## Bootstrapping
