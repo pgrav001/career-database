@@ -47,6 +47,50 @@ The reader is doing the work. They have to infer *what makes this person distinc
 
 Claim first ("takes over stalled programs and makes them ship"). Proof immediately after. Chronology is the *support*, not the lede.
 
+## Canonical artifacts vs. per-opening submissions
+
+The database produces two structurally different kinds of outputs, and they live in different trees:
+
+| Tree | Organized by | Purpose | Example contents |
+|---|---|---|---|
+| `artifacts/` | **artifact type** | The canonical, generalized version of each artifact — tuned for the user's broad search direction | `artifacts/resumes/v3-locked.md`, `artifacts/linkedin/about-current.md`, `artifacts/cover-letters/template-director.md` |
+| `applications/<company>-<role-slug>/` | **opening** | The per-opening submission set — variant artifacts scoped to one specific JD | `applications/acme-director-of-eng/resume.md`, `applications/acme-director-of-eng/cover-letter.md`, plus rendered deliverables |
+
+Both trees coexist; they answer different questions.
+
+### Why two trees
+
+- The **canonical** is tuned to be the user's best generalized story — useful for LinkedIn, recruiter outreach, and as the starting point for every variant. The canonical changes slowly and is the substrate everything else builds from.
+- The **per-opening submission** is tuned to one specific JD. It is short-lived (good for the specific application; not the right shape for the next one). It is allowed to make trades the canonical can't — e.g., cutting a Highlight that's load-bearing for the broader search but doesn't earn its skim altitude for this specific role.
+
+Trying to maintain a single artifact that serves both purposes always ends in drift. Either the canonical absorbs per-opening edits and becomes confused, or the variant accumulates canonical signals that aren't right for the opening. Two trees, two purposes, clear handoff.
+
+### How they relate
+
+- A variant always **declares its canonical parent** in frontmatter (`based_on: artifacts/resumes/<canonical-version>.md`).
+- A variant always **declares its diffs from canonical** so the gap is explicit and future-readable.
+- A variant always **declares whether changes can propagate back to canonical** (`do_not_propagate` field) — most variant edits should NOT propagate; the variant is scoped to one opening for a reason.
+- The canonical never references specific variants. The canonical is upstream; variants are downstream.
+
+### File map shape for per-opening directories
+
+```
+applications/
+  tracker.md                              # active application log (canonical, generalized)
+  <company>-<role-slug>/
+    resume.md                             # variant markdown
+    resume.<presentation-extension>       # designed PDF source (Typst, HTML, etc.)
+    resume.pdf                            # rendered deliverable
+    cover-letter.md                       # role-scoped cover letter
+    cover-letter.<presentation-extension> # if rendered
+    cover-letter.pdf                      # if rendered
+    audit.md                              # the JD-vs-canonical audit that informed the variant (optional)
+```
+
+The per-opening directory is the submission set — everything an application needs, co-located. When the application is submitted, the directory is the receipt: which resume went in, which cover letter, what audit informed them, what decisions were locked.
+
+Variant frontmatter discipline (the `based_on`, `diffs_from_canonical`, `do_not_propagate`, `evals_echoed`, `resolutions` fields) is spelled out in `CONVENTIONS.md`. The pattern enforces the canonical-vs-variant boundary so the two trees don't quietly bleed into each other.
+
 ## Why the operational layer matters
 
 The substrate is only useful if it survives across sessions. The operational files are the discipline:

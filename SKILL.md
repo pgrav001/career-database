@@ -115,9 +115,10 @@ Before ending a session:
 | `targets/companies.md` | Target company list with status + why + who-you-know. |
 | `targets/recruiter-personas.md` | The lanes you're being recruited *for*. |
 | `applications/tracker.md` | Active application log. |
-| `artifacts/resumes/` | Generated resumes. |
-| `artifacts/linkedin/` | Generated LinkedIn copy. |
-| `artifacts/cover-letters/` | Generated cover letters. |
+| `applications/<company>-<role-slug>/` | Per-opening submission set — variant resume + cover letter + audit + rendered deliverables, scoped to one specific JD. See `docs/ARCHITECTURE.md` for the canonical-vs-variant distinction. |
+| `artifacts/resumes/` | Canonical generalized resumes (the locked, broadly-tuned version each variant forks from). |
+| `artifacts/linkedin/` | Canonical generalized LinkedIn copy. |
+| `artifacts/cover-letters/` | Canonical generalized cover letter templates (per-opening cover letters live under `applications/`). |
 | `sources/inventory.md` | Inventory of raw source material. |
 | `sources/inputs/` | Drop-zone for new sources to mine. |
 

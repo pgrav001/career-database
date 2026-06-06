@@ -41,6 +41,54 @@ primary_evidence: [[evidence/...]] # what backs the "Result"
 ---
 ```
 
+### `applications/<company>-<role-slug>/{artifact}.md` (per-opening variants)
+
+```yaml
+---
+type: artifact
+artifact: resume | cover-letter | linkedin-outreach | other
+variant: <company>-<role-slug>
+based_on: artifacts/{type}/<canonical-filename>      # the canonical this forks from
+date: YYYY-MM-DD                                     # when the variant was drafted
+status: draft | reviewed | submitted                 # current state of the variant
+target_company: <Company Name>
+target_role: <Role Title>
+jd_url: <URL or "not-recorded-in-session">
+director_level: true | false                         # affects cover-letter shape; informs review tone
+diffs_from_canonical:                                # what changed and why
+  - "<one-line description of each diff, anchored to a specific section or bullet>"
+do_not_propagate:                                    # guard against cross-opening drift
+  - "<one-line warning per non-propagatable change — what's variant-only and why>"
+evals_echoed:                                        # for cover letters, the JD-derived signals the letter echoes in prose
+  - "<one-line per echoed signal — what the letter foregrounds and what evidence it draws on>"
+resolutions:                                         # open questions resolved during variant drafting / review
+  - "<one-line per resolved question — Q: what was asked; A: what was decided>"
+open_questions:                                      # remaining variant-specific blockers
+  - "<one-line per open question>"
+notes:                                               # free-form: length, voice, deliverable format, candidate questions flagged
+  - "<one-line per note>"
+---
+```
+
+Frontmatter discipline matters because variants live next to the canonical without overlapping with it. Each field above answers a specific question that, if left unanswered, leads to a known failure mode:
+
+- `based_on` — answers "what is this a variant of?" Without it, future sessions can't tell whether the variant is up to date with the canonical or has drifted.
+- `diffs_from_canonical` — answers "what did this variant change?" Without it, the variant is opaque; reviewing it for accuracy requires diffing manually against the canonical file every time.
+- `do_not_propagate` — answers "are these changes safe to push back into the canonical?" Most variant edits are scoped to one opening. The `do_not_propagate` field is the explicit guard that prevents silent canonical drift when someone later thinks "this variant edit was actually good; let me copy it back."
+- `evals_echoed` (for cover letters) — answers "which signals does this letter foreground?" Useful for interview prep — the letter's structure is itself a hypothesis about what the role screens for.
+- `resolutions` — answers "what was decided during variant work?" Variant work typically resolves several small judgment calls (title wording, audience framing, length tradeoffs). Logging them in-frontmatter keeps the decisions discoverable without scrolling through `DECISIONS.md`.
+- `open_questions` — flags blockers that did NOT get resolved. Should be empty when the variant is ready to submit; any remaining items go in `OPEN_QUESTIONS.md` at top-level for the next session.
+
+**Required fields** for a variant: `type`, `artifact`, `variant`, `based_on`, `date`, `status`, `target_company`, `target_role`, `diffs_from_canonical`, `do_not_propagate`.
+
+**Optional fields** (omit if not applicable): `jd_url`, `director_level`, `evals_echoed`, `resolutions`, `open_questions`, `notes`.
+
+**Status legend** for variants:
+
+- `draft` — variant was drafted but not yet reviewed by the user
+- `reviewed` — user walked through per-bullet review; ready for deliverable port
+- `submitted` — variant was submitted to the opening; archive-eligible after the opening closes
+
 ## Status legend
 
 For **evidence**:

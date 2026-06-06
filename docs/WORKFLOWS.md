@@ -85,6 +85,95 @@ When generating a resume, LinkedIn About, cover letter, or interview answer:
 6. **Output to `artifacts/`.** Save the generated artifact in the relevant subfolder (`resumes/`, `linkedin/`, `cover-letters/`).
 7. **Update `applications/tracker.md`** if this is for a specific application.
 
+## Per-opening tailoring
+
+When a specific job opening surfaces and the user wants to tailor an artifact (resume, cover letter, sometimes LinkedIn outreach) to that opening rather than ship the canonical version.
+
+This is structurally a follow-on to **Artifact generation**, not a replacement. The canonical artifact (the locked resume at `artifacts/resumes/`, the locked LinkedIn at `artifacts/linkedin/`) remains untouched. The per-opening variant is a sibling deliverable scoped to one company + one role.
+
+**When to use this workflow:**
+
+- A specific JD has surfaced and the user wants to apply.
+- The canonical resume scores against a generalized target (e.g., "AI labs at senior level") but the user wants a sharper variant for one named opening.
+- The opening's screening signal has known gaps relative to the canonical — and addressing them in the canonical would weaken the artifact's fit for other openings.
+
+**When NOT to use this workflow:**
+
+- The canonical artifact is genuinely the right shape for the opening — no tailoring needed.
+- The user hasn't yet identified a specific opening — premature variant work locks positioning before the target is known.
+- Tier 1 OPEN_QUESTIONS are unresolved — the canonical artifact should stabilize first.
+
+### The five phases
+
+#### Phase 1 — Read the JD against the canonical
+
+1. Read the target JD carefully. Identify the load-bearing signals — the phrases the JD itself repeats, the responsibilities listed first, the requirements that map to specific candidate evidence.
+2. Read the current canonical artifact (`artifacts/resumes/<locked-version>.md`).
+3. Pull supporting evidence + voice files for the strengths the JD's signals point to.
+
+#### Phase 2 — Audit (canonical vs. opening)
+
+Score the canonical artifact against the opening's signals. The audit produces a list of where the canonical lands well and where it has gaps.
+
+A reusable audit shape: 8–12 yes/no checks derived from the JD's own language (each check must cite a specific JD passage), with each check evaluated against the canonical artifact. Tag each as PASS, PARTIAL, or FAIL — concrete evidence cited from the canonical for PASS, specific absence noted for FAIL.
+
+The audit's outputs are:
+
+- A score (e.g., `7 PASS / 5 PARTIAL / 0 FAIL`).
+- A ranked list of the top 3–5 cross-check gaps (PARTIAL or FAIL items that appear most load-bearing for this specific opening).
+- The PASS list — what's already strong and should remain untouched.
+
+**Save the audit** at `applications/<company>-<role-slug>/audit.md` if the artifact directory exists, or alongside the variant once it's drafted. The audit is a deliverable in its own right — it doubles as interview prep substrate ("the gaps the recruiter would flag").
+
+#### Phase 3 — Draft the variant
+
+For each top-priority gap from Phase 2, draft a specific edit to address it. Constraints:
+
+- **Anchor every edit to evidence already in the database.** If the gap can only be addressed by a claim the substrate doesn't support, do not draft the edit — flag it as a candidate question and surface it for the user to either resolve (via brain-dump or recall) or hold.
+- **Honor the canonical's load-bearing claims.** Variant edits should not strip claims the canonical relies on; they should augment, swap, or extend specific bullets.
+- **Maintain voice.** Voice-file phrasings authorized for verbatim use in the variant's artifact type get used verbatim. Don't paraphrase pre-vetted phrasings.
+- **Respect length constraints.** If the variant adds top-of-document weight (a new Highlight, an expanded summary clause), look for a corresponding cut first — typically a claim whose proof also lives at body altitude, where cutting from skim altitude doesn't lose the claim.
+
+Save the variant at `applications/<company>-<role-slug>/resume.md` (or `cover-letter.md`, etc., for non-resume variants).
+
+#### Phase 4 — Per-bullet review with the user
+
+Walk the user through each variant edit one at a time:
+
+- Present the original (from canonical) and the proposed (from variant) in a clear before/after.
+- State the tradeoff in one or two sentences — what changes, why, what it costs.
+- Offer 3–4 numbered options including at least one "keep canonical" and one "apply variant as drafted."
+- The user replies with a number; the edit applies; move to the next change.
+
+The user retains every edit-level decision. The assistant's role is to surface the tradeoff, not to advocate for or against.
+
+End the review with a summary table of decisions and a procedural checklist for close-out (frontmatter cleanup, decision log, deliverable port, tracker update).
+
+#### Phase 5 — Ship the deliverable
+
+Once the variant content is locked:
+
+1. **Render to the deliverable format** — designed PDF, HTML, docx, whatever the application portal accepts. Treat the markdown as the source of truth and the rendered format as the presentation layer; sync the two manually if both will be maintained going forward.
+2. **Log the decision in `DECISIONS.md`** — what changed from canonical, why, and the per-bullet review decisions. Future sessions need this to avoid re-litigating.
+3. **Update `applications/tracker.md`** — last touch, current status (`prepping` → `applied` once submitted), next step.
+4. **Update `SESSION.md`** — what shipped this session, what to do next.
+
+The deliverable is a per-opening artifact pair — typically a resume plus a cover letter, both rendered to the format the portal wants. They are submission-ready together.
+
+### Variant frontmatter
+
+Variant artifacts must declare what makes them a variant — what they diverge from, on what dimensions, and what scope of propagation is and is not authorized. See the variant frontmatter schema in `CONVENTIONS.md`.
+
+The discipline matters because cross-opening drift is a real failure mode: a variant edit that's sharper for Company A may be wrong for Company B, and propagating variant changes to the canonical without intent can quietly damage the canonical's fit across the rest of the search. The `do_not_propagate` field on a variant is the guardrail.
+
+### Common pitfalls
+
+- **Drafting the variant before reading the JD twice.** The JD's load-bearing signals are subtle — what's repeated, what's named first, what the "background" section emphasizes vs. what the "responsibilities" section emphasizes. A single pass misses them.
+- **Building a variant against a thin JD.** If the JD is a one-paragraph stub, the variant has nothing concrete to tune against. Either skip the variant work and ship the canonical, or supplement the JD with company-bar signals (recent blog posts, careers-page values content, public statements from leadership).
+- **Propagating variant changes back into the canonical without decision-log review.** The canonical is the artifact tuned for the user's generalized search; variant edits are scoped to one opening. Promotions from variant to canonical should be deliberate, not silent.
+- **Skipping the audit phase and going straight to drafting.** Without the audit, the variant addresses gaps the user assumes exist rather than gaps the JD actually screens for. The score also doubles as a checkpoint — a variant score of `9 PASS / 3 PARTIAL` may not justify the variant work; ship the canonical and pour the time elsewhere.
+- **Forgetting to update the canonical's `do_not_propagate` flags after variant work.** When a variant change turns out to be the right call for the canonical too, update the canonical and remove the per-variant restriction — otherwise the same edit gets re-drafted on every future variant.
+
 ## Session start ritual
 
 Every session starts with the same 4 reads:
