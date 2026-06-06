@@ -25,9 +25,44 @@ The architecture is opinionated. The conventions are explicit. The hygiene rules
 - Hygiene rules (provenance, as-of dating, Open Recall promotion) that prevent drift
 - The skill instructs Claude on the read-order, session ritual, and generation flow
 
+## Install
+
+`career-database` is a Claude Code plugin. After cloning the repo to your plugins directory, Claude Code picks it up on next launch and exposes it as the `/career-database` slash command.
+
+Quickest path — clone directly into the plugin directory:
+
+```
+# macOS / Linux
+git clone https://github.com/<your-username>/career-database ~/.claude/plugins/career-database
+
+# Windows (PowerShell)
+git clone https://github.com/<your-username>/career-database "$env:USERPROFILE\.claude\plugins\career-database"
+```
+
+The plugin should resolve to:
+
+```
+~/.claude/plugins/career-database/
+  .claude-plugin/
+    plugin.json
+  README.md
+  SKILL.md
+  docs/
+    ARCHITECTURE.md
+    BOOTSTRAPPING.md
+    CONVENTIONS.md
+    WORKFLOWS.md
+  template/
+    (~25 markdown files mirroring the database structure)
+```
+
+After installing, **restart Claude Code** so the plugin registry picks up the new skill.
+
+If you don't have Claude Code, the templates and docs are still useful standalone — clone the repo and copy `template/` to your chosen location. The methodology (Claim → Proof, Tier 1–5, hygiene rules) works in any tool that reads markdown.
+
 ## Quick start
 
-If you have Claude Code installed:
+Once installed and Claude Code has been restarted, invoke the skill in any Claude Code session:
 
 ```
 /career-database
@@ -35,10 +70,8 @@ If you have Claude Code installed:
 
 The skill will:
 1. Ask where to put the database (default `~/career/`)
-2. Copy template files
-3. Walk you through the first session — Tier 1 interview-blocking questions first
-
-If you don't have Claude Code, the templates and docs are also useful standalone — clone the repo and copy `template/` to your chosen location.
+2. Copy template files there if the directory doesn't exist; read the existing operational files (`SESSION.md`, `OPEN_QUESTIONS.md`) if it does
+3. Walk you through the first session — Tier 1 interview-blocking questions first (see `docs/BOOTSTRAPPING.md` for the full first-session guide)
 
 ## Architecture overview
 
@@ -89,6 +122,14 @@ First session priorities:
 - Any personal content. Names, companies, metrics, dates, quotes — all yours to fill in.
 - A web app, a database, a backing service. This is markdown files. Use any editor, any tool, any AI assistant.
 - A specific resume format or output template. The substrate is durable; the artifact templates live elsewhere.
+
+## Related
+
+`career-database` is the substrate layer — durable, broad, owned by the user. A separate skill called `autowrite` covers the artifact-generation side: given a resume and a list of target companies, it autonomously scores the resume against company-specific binary hiring evals, mutates one line at a time, and produces opening-tailored variants. The two skills are independent (no code-level dependencies) but compose cleanly — `career-database` builds the substrate; `autowrite` operates on the canonical artifact produced from it.
+
+If you want the substrate layer (interview prep, voice capture, durable claim → proof structure across your career): you're in the right place.
+
+If you want autonomous resume tailoring across multiple target companies: that's `autowrite`. Either or both, in either order.
 
 ## License
 

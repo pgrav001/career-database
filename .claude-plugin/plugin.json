@@ -1,0 +1,15 @@
+{
+  "name": "career-database",
+  "version": "0.2.0",
+  "description": "Bootstrap and maintain a durable, AI-native career database -- a Claim-to-Proof markdown substrate that resumes, LinkedIn copy, cover letters, and interview prep are generated from rather than maintained alongside. Provides a ~25-file template tree, Tier 1-5 prioritization framework, operational files (SESSION / OPEN_QUESTIONS / DECISIONS / OPPORTUNITIES) that survive across sessions, frontmatter schemas with provenance + as-of dating discipline, workflows for source mining, brain-dump interviewing, audit, artifact generation, per-opening tailoring, and interview prep. The database is markdown; the user owns it end-to-end; the skill is the discipline.",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "career",
+    "resume",
+    "interview-prep",
+    "substrate",
+    "claim-proof",
+    "career-database"
+  ]
+}

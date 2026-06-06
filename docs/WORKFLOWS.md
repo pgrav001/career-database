@@ -68,7 +68,7 @@ Then update `SESSION.md` so the next session picks up cleanly.
 
 **Common failure modes:**
 
-- **Over-drilling on granular mechanics when the source artifact already has them.** If the PSC / review / doc has the metric, don't re-extract verbally. Pivot to substance that's only in the user's head.
+- **Over-drilling on granular mechanics when the source artifact already has them.** If the source artifact (performance review, self-evaluation, retrospective doc) has the metric, don't re-extract verbally. Pivot to substance that's only in the user's head.
 - **Bullet-list probes that fragment one beat.** Pick the single highest-value question.
 - **Inferring narrative from factual corrections.** When the user corrects a fact (level, title, date), don't bake in narrative implications they didn't authorize. Stick to facts; let the user author narrative.
 - **Forced cinematic framing.** Not every conversion is a single moment. Honor the user's framing when they say it was accumulation.
@@ -174,6 +174,105 @@ The discipline matters because cross-opening drift is a real failure mode: a var
 - **Skipping the audit phase and going straight to drafting.** Without the audit, the variant addresses gaps the user assumes exist rather than gaps the JD actually screens for. The score also doubles as a checkpoint — a variant score of `9 PASS / 3 PARTIAL` may not justify the variant work; ship the canonical and pour the time elsewhere.
 - **Forgetting to update the canonical's `do_not_propagate` flags after variant work.** When a variant change turns out to be the right call for the canonical too, update the canonical and remove the per-variant restriction — otherwise the same edit gets re-drafted on every future variant.
 
+### After an outcome (post-application feedback)
+
+The most valuable signal in an active search is the outcome of the applications already submitted — and it's the one most often lost to chat history. Capture it.
+
+When an outcome lands for an opening (rejection email, recruiter ghosting after a screen, advance to next round, offer), add a `post-mortem.md` to the per-opening directory.
+
+**Shape:**
+
+```markdown
+---
+type: post-mortem
+opening: <company> / <role>
+variant: <path to the resume / cover-letter variant submitted>
+date_submitted: YYYY-MM-DD
+outcome: rejected | ghosted | advanced | offer | withdrew
+outcome_date: YYYY-MM-DD
+outcome_stage: applied | recruiter | hm | loop | offer-stage
+---
+
+## What we shipped
+
+<One paragraph: the variant's audit score, top-3 gaps the variant addressed, top-3 PASS items the variant leaned on.>
+
+## What came back
+
+<Whatever signal the outcome carries — verbatim feedback if provided, signal if only the outcome with no commentary, observed timing patterns. "Rejected with no feedback after 11 days" is itself a signal worth recording.>
+
+## Hypotheses
+
+<What the user thinks went right or wrong. Multiple competing hypotheses are fine; the point is to record the speculation when it's fresh, not to commit to a single causal story.>
+
+## What (if anything) should change
+
+- **Variant changes** (scoped to this opening — irrelevant once the opening closes): noted here for completeness; usually no action.
+- **Canonical changes** (relevant beyond this opening): if the post-mortem surfaces a gap that holds across openings, this is a candidate for propagation back into the canonical. Log in `DECISIONS.md` with rationale before propagating.
+- **Substrate changes** (deeper than artifact): if the post-mortem surfaces a strength claim that's not holding up, or a piece of evidence that turns out to read as weaker than expected, the fix is upstream — re-pressure-test the strength in `strengths.md` or revise the evidence file.
+- **Tier 1 changes:** if the post-mortem surfaces that your stated lane / filter / comp posture isn't landing, revisit Tier 1 OPEN_QUESTIONS before the next batch of applications.
+```
+
+**Patterns across post-mortems.** After 3–5 outcomes, look across the post-mortem files for repeats. The same gap surfacing in three rejection post-mortems is a substrate-level signal — pull the change upstream rather than re-litigating it per variant. The same PASS holding up in three advance-to-next-round post-mortems is a strength worth foregrounding more in the canonical.
+
+**Don't write post-mortems for non-events.** A rejection that was clearly mismatched (the opening was the wrong fit and the user knew it before applying) doesn't need a full post-mortem — a one-line note in the tracker is enough. Reserve post-mortem-grade reflection for outcomes where the gap (positive or negative) wasn't predictable from the audit.
+
+**Update the tracker.** Whenever a post-mortem lands, update `applications/tracker.md` — move the row from Active to Decided with the outcome, link to the post-mortem file, capture the lesson in the tracker's `Reason` column (one phrase).
+
+## Interview prep
+
+The substrate's payoff at search time is interview prep — every prior workflow (substance mining, voice capture, audit, artifact generation, per-opening tailoring) sets up the moment when the user has an interview on the calendar and needs to be ready to talk.
+
+This workflow runs against the substrate, not against the JD alone. The JD anchors which signals matter; the substrate provides what to say about them in the user's own framing.
+
+### When to use
+
+- An interview is scheduled (recruiter screen, hiring manager round, full loop, executive round).
+- Two to five days out is the sweet spot — close enough that prep stays in working memory, far enough that gaps surfaced during prep can be brain-dumped before the conversation.
+- Earlier than five days out is usually wasted prep (details fade); the night before is too late to do anything but read.
+
+### The 3-day prep cycle
+
+**Day -3 (or as far in advance as time allows): scope the loop.**
+
+1. Re-read the JD against the variant submitted (or the canonical, if no variant was tailored).
+2. Read the recruiter / role briefing materials if any (some recruiters share a loop schedule + interview-type breakdown — capture into the per-opening directory).
+3. Re-read `identity.md` and `targets/role-criteria.md` — confirm the lane / scope / filter is still what you want to project in this loop.
+4. List the interview types you know about (recruiter screen, hiring manager 1:1, technical depth round, behavioral round, cross-functional partner, exec round) and the likely topics for each.
+5. Map each likely topic to the substrate file that holds the relevant material: behavioral → `stories/*.md`; technical depth → `evidence/*.md` + `history/*.md`; lane positioning → `identity.md` + `themes/*.md`; "tell me about yourself" → `voice/self-voice.md` + the latest opening-tailored variant's summary.
+
+**Day -2: pressure-test the load-bearing answers.**
+
+1. Pick the 3-5 stories most likely to come up given the loop. For each: re-read the `stories/<slug>.md` file, then say the answer out loud. Time it. The 2-minute version and the 5-minute version should both exist; if only the polished 2-minute exists, draft the 5-minute (or vice versa).
+2. Verify each story's evidence references are still accurate. A story that cites an evidence file whose status is `outstanding` (missing detail) is a story that's missing its strongest beat — fill the gap or skip the story for this loop.
+3. Identify the 2-3 hardest questions you expect — the ones that will probe a known weak spot (the Tier 2 behavioral gaps: "tell me about a time you failed / disagreed with leadership / managed someone out / didn't get something you wanted"). Draft answers to each. If the substrate doesn't have a story for one of them, schedule a brain-dump session today.
+4. Re-read `themes/honest-growth-areas.md` (or the equivalent honest-bounded framing file). Interview answers that include the honest counter-narrative read more credibly than maximized claims; rehearse the "growing edge" framing the substrate captures.
+
+**Day -1: rehearse + reset.**
+
+1. Speak through each prepared answer once, out loud. Don't memorize; aim for fluent re-construction from the substrate's framing.
+2. Confirm logistics — name / pronunciation of every interviewer if you have the list, the platform (Zoom / Google Meet / on-site), the time zone for remote.
+3. Re-read `voice/self-voice.md` — the goal is to sound like yourself, not like a polished candidate. The voice file is the anchor.
+4. Stop prepping the night before. Cramming new substance the night before degrades fluency.
+
+### After the interview
+
+Within 24 hours, capture:
+
+1. **Which stories came up.** Log against the `stories/*.md` files — frequency of use is the signal for which stories are most valuable across loops.
+2. **Which questions you fumbled.** Add to `OPEN_QUESTIONS.md` (Tier 2 if it was a behavioral gap; Tier 5 if it was a positioning gap) so the next prep cycle addresses them.
+3. **Voice notes.** Anything you said that landed well — particularly phrasings that surprised you — into `voice/self-voice.md` with a one-line voice note about when to use it.
+4. **A one-line update in `SESSION.md`** even if no other database work happened. The substrate gets richer through use, and post-interview is the highest-density signal moment in a search.
+
+The 24-hour capture is the load-bearing step. Skipping it loses the highest-quality substrate update of the entire search.
+
+### Common pitfalls
+
+- **Memorizing answers verbatim.** Memorized answers fall apart when the interviewer reframes the question. Substrate-grounded reconstruction holds up.
+- **Over-rehearsing the 2-minute version, never the 5-minute version.** Most behavioral prompts expand into 3-7 minute conversations with follow-ups. The 2-minute answer is the opener; the 5-minute version is the full story.
+- **Skipping the day-1 reset.** The night-before cram is a stress habit, not a prep technique. Trust the substrate; sleep instead.
+- **No post-interview capture.** The lesson lives for ~24 hours. After that the texture fades and the database doesn't compound.
+
 ## Session start ritual
 
 Every session starts with the same 4 reads:
@@ -262,7 +361,7 @@ Periodically — every few months, or when the database has had a lot of churn �
 
 **Method:**
 
-1. **Read the source materials** for the period being audited — focus on the user's *own* framing of their work (in PSCs, this is the self-review sections rather than manager-side).
+1. **Read the source materials** for the period being audited — focus on the user's *own* framing of their work (in performance reviews, this is the self-review sections rather than manager-side).
 2. **Extract for each source:**
    - The focal points the user chose to highlight
    - The strengths they claimed for themselves

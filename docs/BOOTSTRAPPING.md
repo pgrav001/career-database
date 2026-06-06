@@ -14,6 +14,55 @@ Gather what you have:
 
 Drop all of these in `sources/inputs/` once the directory exists. Don't worry about format; just get them in one place.
 
+## Setting up cross-session memory (one-time)
+
+Cross-session memory is the layer the SKILL refers to in Step 4.5 — *how-to-work-with-this-user* notes that persist across sessions but don't belong in the database itself (behavioral preferences, workflow patterns proven out for you, process-level corrections from earlier sessions). The database is content; cross-session memory is behavior.
+
+Under Claude Code, the memory layer lives outside your career database directory, in the Claude Code projects tree. Set it up once before your first session:
+
+1. **Find the right project directory.** Claude Code namespaces memory by working directory. The convention is `~/.claude/projects/<path-slug>/memory/` where `<path-slug>` is your working directory with `/` replaced by `-` and the leading slash dropped. If your sessions run from `/Users/yourname`, the slug is `-Users-yourname`. If from `/home/yourname`, the slug is `-home-yourname`.
+2. **Create the memory directory and index file:**
+   ```
+   mkdir -p ~/.claude/projects/<path-slug>/memory
+   touch ~/.claude/projects/<path-slug>/memory/MEMORY.md
+   ```
+3. **Seed `MEMORY.md` with the index header** (the file is always loaded into Claude's context, so keep it under ~200 lines):
+   ```markdown
+   # Index of cross-session memory entries
+
+   - (entries added here as Claude saves them)
+   ```
+4. **Add a first entry** if you have a behavioral preference you want preserved from session one (e.g., "User prefers comprehensive-arc framing over granular-mechanics drilling in interview brain-dumps"). Use this shape — one file per entry, named by type and topic:
+   ```markdown
+   ---
+   name: feedback-interview-style
+   description: Brief one-line summary that future-Claude will scan for relevance
+   metadata:
+     type: feedback
+   ---
+
+   <The behavioral preference, with **Why:** and **How to apply:** lines so future-Claude can judge edge cases.>
+   ```
+
+Memory types follow the convention in your runtime's documentation. The career-database skill uses four: `user` (profile facts), `feedback` (corrections + validated approaches), `project` (in-flight initiatives), `reference` (where information lives in external systems).
+
+If your runtime doesn't have cross-session memory, skip this step entirely — write the same content into `CLAUDE.md` at the root of the database instead. It's noisier (every session reads the full file) but functionally equivalent.
+
+## Common starting points (what to mine, given what you have)
+
+Not every candidate starts with the corporate-employee default (resume + reviews + LinkedIn). The table below maps realistic source mixes to what to extract first.
+
+| You have | First-pass extraction | What's likely missing |
+|---|---|---|
+| Resume + performance reviews + LinkedIn | The default — see "Before session 1" above | Probably nothing — this is the high-density case |
+| Resume only (no formal reviews; consulting / contract / founder / government) | Mine the resume into `history/`; brain-dump each role into `evidence/` + `stories/` since you have no review-grade source to lean on | Third-party voice (`voice/peer-quotes.md`) — you'll need to actively solicit; see `voice/peer-quotes.md` Open Recall pattern |
+| LinkedIn only (early career, light on internal docs) | Profile + Recommendations Received + Recommendations Given + Connections — LinkedIn's data export has all of these | Quantified outcomes (LinkedIn rarely captures numbers); plan a brain-dump session per role |
+| Researcher / academic (publication list + talks instead of corporate work) | Mine `patents-publications.md` from your CV; mine talks + citations into `evidence/`; treat each major publication as the equivalent of a shipped product | The "behavioral story bank" Tier 2 — research-CV framing rarely captures conflict / failure / decision-under-pressure stories; needs separate brain-dump |
+| Multi-decade career with paper-only old records | Don't try to reconstruct everything. Mine the last 10 years deeply; the older roles get one-line entries in `history/` with "details lost to time" notes | Specific metrics from pre-digital roles — set realistic expectations and don't fabricate |
+| Just a strong sense of yourself, nothing on paper | Brain-dump-first bootstrap: skip source mining entirely; build the substrate from scratch via repeated era-by-era brain-dumps. This works but takes 4–6 sessions before the substrate is artifact-ready | Provenance — without source documents to cite, every claim is `claimed` (self-attested only); plan to verify the load-bearing ones before interview use |
+
+For any case, the first-session goal is **breadth, not depth**. Capture what's there, surface what's missing, log gaps to `OPEN_QUESTIONS.md`, plan brain-dumps for the high-priority gaps in session 2.
+
 ## Session 1 — Tier 1 + source mining (90–120 min)
 
 ### Part A: Answer Tier 1 questions (30–45 min)
