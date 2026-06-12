@@ -2,6 +2,28 @@
 
 > _A specific guide for the first time you sit down with this. The most common bootstrap mistake is generating artifacts too early; the second-most-common is filling `strengths.md` from the top down._
 
+## The 30-minute MVP path (try this first if you're skeptical)
+
+The full first session is ~90–120 minutes and asks for source materials, Tier 1 answers, and a substance brain-dump. That's a real commitment, and it's reasonable to want to see whether the methodology produces anything useful *before* committing.
+
+The MVP path skips most of the ritual and gets you to a single produced artifact in ~30 minutes. It's deliberately under-engineered. The point is to feel the rhythm — claim → evidence → voice → output — before scaling up.
+
+**The 30-minute path:**
+
+1. **Pick one role you held in the last 5 years** (~2 min). Most recent is fine. Don't pick the most ambiguous one yet — pick one you can talk about easily.
+
+2. **Brain-dump it into a single evidence file** (~15 min). Open `template/evidence/_template.md`, copy it to `evidence/<short-slug>.md`, and fill it in for *one* accomplishment from that role. Don't be careful. Don't worry about whether it's the "right" accomplishment. Pick the one that's loudest in your memory and just write it. Use the Open Recall section at the bottom for everything you can't remember or aren't sure about — that's what it's for.
+
+3. **Capture 1–2 peer quotes** (~5 min). Open `template/voice/peer-quotes.md`, copy it, drop in 1–2 things people have said about you that match the evidence you just wrote. Email praise, performance review excerpts, anything verbatim. Note the provenance inline.
+
+4. **Generate one artifact: a LinkedIn paragraph** (~8 min). Ask Claude (or your AI assistant) to write a one-paragraph LinkedIn About update *grounded in the evidence file and the peer quotes you just wrote*. Lead with the claim implied by the evidence, prove with the metric, match the voice of the peer quote. One paragraph, no more.
+
+**What you'll have at the end of 30 minutes:** one evidence file, one peer-quotes file, one generated paragraph. Not a career database. Not interview-ready. But: a tangible *output* that was *generated from* a substrate, which is the central methodology claim of this skill.
+
+**If that 30-minute output feels worth scaling up,** go to "Before session 1" below and start the real bootstrap. If it doesn't, you've spent 30 minutes instead of 2 hours discovering this skill isn't a fit for you — that's a win too.
+
+> See `examples/sample-arc/` (in the skill repo root) for what a populated database looks like in steady state — an anonymized worked example you can read before deciding to invest. ~15 minutes to read; complements this MVP path.
+
 ## Before session 1
 
 Gather what you have:

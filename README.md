@@ -73,6 +73,13 @@ The skill will:
 2. Copy template files there if the directory doesn't exist; read the existing operational files (`SESSION.md`, `OPEN_QUESTIONS.md`) if it does
 3. Walk you through the first session — Tier 1 interview-blocking questions first (see `docs/BOOTSTRAPPING.md` for the full first-session guide)
 
+### Try it before you commit
+
+If 90–120 minutes of bootstrap feels like a lot, two lower-cost ways to evaluate first:
+
+- **Read the worked example** at [`examples/sample-arc/`](examples/sample-arc/) — a fully-fictional populated database (15-year arc of a fictional library-system director) showing what evidence files, stories, peer quotes, and operational rhythm look like in steady state. ~15 minutes to read.
+- **The 30-minute MVP path** in [`docs/BOOTSTRAPPING.md`](docs/BOOTSTRAPPING.md#the-30-minute-mvp-path-try-this-first-if-youre-skeptical) — produces one generated LinkedIn paragraph from one evidence file and one peer-quotes file. Skips most of the ritual; tells you fast whether the methodology produces output worth scaling.
+
 ## Architecture overview
 
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full Claim → Proof model. Short version:
@@ -116,6 +123,23 @@ First session priorities:
 1. **Tier 1: interview-blocking questions** — answer these before generating any outward-facing artifact. Why did you leave your last role / why are you looking now / what are you looking for / comp expectations / geography.
 2. **Source mining** — process whatever you've got (current resume, performance review history, LinkedIn export).
 3. **Substance-layer brain-dump** — era-by-era walk through your career; capture evidence + stories + voice as you go.
+
+## Privacy & naming other people in your database
+
+A career database is, by design, a record of your career — but careers don't happen alone. Your evidence files will name managers, direct reports, peers, and external partners. Your peer-quotes file will hold things people said about you in private channels (Slack DMs, performance reviews, emails). Your stories will reference people by name when the narrative requires it.
+
+Some of that content is fine. A lot of it isn't fine to publish without thought.
+
+**Two layers to keep distinct:**
+
+1. **The database itself is local.** It lives in your filesystem. Treat it like a private journal: don't sync it to anywhere you don't fully control; don't put it in a shared cloud folder; don't commit it to a public git repo. If you back it up, encrypt the backup. (The skill instructions do not send your content anywhere by default — but anything you ask an AI assistant to *do* with the content involves the assistant reading it. Anthropic's data policies apply to Claude sessions; check them if uncertain.)
+
+2. **Anything generated *from* the database (resumes, LinkedIn copy, cover letters) is public-facing.** The substrate is private; the artifacts are not. Before any artifact ships:
+   - **Quoting someone:** get their explicit consent, or use a generic attribution ("a senior leader I worked with" rather than "Pat Chen"), or paraphrase rather than quote verbatim. The `voice/peer-quotes.md` template has fields for "OK to quote in artifacts" — use them.
+   - **Naming someone:** even without a direct quote, naming a person in your career narrative attaches them to your story. Default to roles/relationships ("my system director," "a direct report") rather than names, unless naming them is genuinely load-bearing and they've signed off.
+   - **Internal metrics, dollar figures, dates:** judge what's defensible to publish. Some metrics are already public (you mentioned them on LinkedIn; they're in a press release; they're in a published annual report). Others are internal-only. Resumes that recite specific internal numbers without considering this can create real downstream issues, including with previous employers.
+
+**The worked example at `examples/sample-arc/`** demonstrates this layer in action — `voice/peer-quotes.md` has explicit "OK to quote externally?" notes per quote, the evidence files cite source-grade vs. subject-attested provenance, and the Open Recall sections flag specific items that need verbatim verification before any external use. Use it as the pattern.
 
 ## What's NOT in here
 
