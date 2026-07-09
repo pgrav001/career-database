@@ -85,6 +85,30 @@ When generating a resume, LinkedIn About, cover letter, or interview answer:
 6. **Output to `artifacts/`.** Save the generated artifact in the relevant subfolder (`resumes/`, `linkedin/`, `cover-letters/`).
 7. **Update `applications/tracker.md`** if this is for a specific application.
 
+## Incorporating external feedback (coach / mentor / recruiter review)
+
+At some point someone credible — a career coach, a mentor, a friendly recruiter, a hiring-manager contact — gives the user a batch of feedback on an artifact ("your resume is too long," "add a keyword headline," "get more recommendations"). This feedback is valuable but it is **advice, not instructions**. The failure mode is applying it literally and mechanically, which produces an artifact that satisfies the note but damages the positioning.
+
+The workflow that avoids that:
+
+1. **Triage, don't execute.** Read the whole batch first. For each item, decide: agree / disagree / agree-with-a-modification. **Where you disagree, say why** — the user, not the assistant and not the coach, makes the final call, and they can only make it with the reasoning in front of them. A coach optimizing for generic recruiter-scannability may be wrong for a specific senior/niche target; a good triage names that tension instead of silently complying or silently ignoring.
+2. **Make scope decisions *before* editing, and log them.** Convert each accepted item into a concrete scope decision with a number or a rule attached ("target ~750 words, not the suggested 650, because 650 forces cutting evidence-tested content"; "condense pre-current-role history to one line rather than deleting it, to avoid an apparent employment gap"). Log these in `DECISIONS.md` before touching the artifact. This is what stops a future session from re-litigating the coach's note from scratch.
+3. **Separate the reusable method from the private specifics.** Feedback often mixes "here's a format that works" (reusable) with "say this about your background" (only the user can validate). Apply the first; route the second through the user.
+4. **Execute against the logged decisions, not the raw note.** Now edit. The decisions are the spec; the coach's note was the input to the spec.
+
+**Don't treat external feedback as authoritative just because it came from an expert.** Coaches see a high volume of generic candidates and optimize accordingly; the substrate exists precisely so the user's artifacts can be *specifically* strong rather than generically inoffensive. Weigh the note against the positioning, and disagree in writing when they conflict.
+
+### Cut-list discipline (when trimming an artifact)
+
+Trimming for length is not the same as rewording. When a pass **removes content entirely** (a word-count cut, a "make it one page," a "drop the old roles"), the risk is that a load-bearing claim disappears silently and nobody notices until an interviewer asks about the thing that's no longer there.
+
+The discipline: **when content is cut completely — not just reworded — enumerate it for the user before finalizing.** List what's leaving (a concept, a metric, a named artifact, a whole role), and let the user confirm each. Rewording under a tighter budget is normal and doesn't need a cut-list; *complete removal* does. Two things reliably hide in a trim and are worth calling out explicitly:
+
+- **A claim that only lived in the cut content.** If a strength's sole proof on the artifact was the bullet you just deleted, the claim is now unproven — flag it, don't assume it's covered elsewhere.
+- **A silent factual softening.** Condensing "five named prior employers across three sectors" into one line can quietly introduce an inaccuracy (mislabeling a sector, implying a gap). Re-check the condensed line against the facts, not just against the word count.
+
+The user reviews the cut-list and can restore any item. This is the same "surface the tradeoff, user decides" contract as per-bullet review — applied to subtraction instead of substitution.
+
 ## Per-opening tailoring
 
 When a specific job opening surfaces and the user wants to tailor an artifact (resume, cover letter, sometimes LinkedIn outreach) to that opening rather than ship the canonical version.
@@ -400,6 +424,27 @@ The audit is a deliverable the user reviews. The user decides what to action, in
 - Don't critique the user's self-assessment — the audit is database-vs-source, not user-vs-database.
 - Don't merge findings into existing files without the user's approval.
 - Don't include manager-side sections of reviews unless explicitly asked — the user's self-framing is the primary lens for an audit.
+
+## Positioning-pillar pressure-test (artifact vs. intended positioning)
+
+This is a different audit from the consistency check above. The consistency check compares the *database* against its *source materials* (is the substrate faithful to what happened?). The positioning-pillar pressure-test compares a *finished artifact* against the *positioning the user is trying to project* (does this resume/profile actually land the blend of things the user wants to be known for?).
+
+It catches a specific, common failure: an artifact that is individually true in every line but collectively lopsided — over-indexed on one or two dimensions and quietly silent on others the user considers core.
+
+**When to use:**
+- After a big revision to a resume or LinkedIn profile, before locking it.
+- When the user articulates a target blend ("I want to read as X, Y, Z, and W").
+- When an artifact "feels off" but the user can't name why.
+
+**Method:**
+
+1. **Get the pillars from the user, explicitly.** Ask (or confirm) the 4–6 dimensions they want the artifact to project — e.g. a blend of a domain, a leadership style, a technical claim, a strategic/visionary claim. These are the user's, not the assistant's to invent; pull from `identity.md` and `strengths.md` and confirm.
+2. **Score the artifact pillar by pillar.** For each pillar: is it *strongly present*, *present-but-buried*, *asserted-but-unproven*, or *absent*? Cite the specific line(s) that carry it, or note the absence.
+3. **Pay special attention to the summary/headline.** The top of an artifact is the part most readers actually read. A pillar that's well-proven in the body but missing from the summary is effectively invisible to a skim — flag "present-but-buried" as a real gap, not a pass.
+4. **Distinguish a result-claim from a foresight-claim (and other altitude mismatches).** "Drove the strategy that became X" proves *execution*; "Bet on the strategy years before it became X" proves *foresight*. If a pillar is "visionary" but every supporting line is phrased as a result, the pillar is technically absent even though the underlying facts are present. The fix is often a re-framing of existing true content, not new content.
+5. **Report, then fix cheaply.** Most gaps close with a clause, not a rewrite — a people-leadership pillar added to a summary that was all-technical, a foresight re-frame of a result bullet. Propose the minimal edits and let the user choose.
+
+**Why it's worth a dedicated pass:** external feedback (a coach) optimizes for generic scannability and won't tell you your artifact under-projects "visionary." Only a check against the user's *own* stated pillars catches that. Run it as the last step before locking a high-stakes artifact.
 
 ## Bootstrapping flow (first 1–2 sessions)
 
