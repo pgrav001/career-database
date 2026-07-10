@@ -18,6 +18,8 @@ Resumes generated from the substrate live here. Each one is downstream of the da
 
 Defaults that have held up in practice — deviate deliberately, not by accident:
 
+- **The top summary must stand on its own.** Write it as 3–4 punchy, self-contained sentences. The test: if a recruiter reads *only* the summary and nothing else, they should come away knowing what the user does and what they can accomplish. Simple and specific beats comprehensive — it's an opening argument, not an abstract of the whole document.
+- **Selective bolding is a scannability tool — use it sparingly.** Bold the load-bearing few words in a bullet (the metric, the named system, the outcome) so the page has a legible skim-path. The value is in the *contrast*: if half the line is bold, nothing is emphasized. A good bullet has zero-to-two bolded spans, not five.
 - **Result-led bullets.** Structure each bullet as *result, then the actions that produced it* ("Cut build time from 5 hours to 5 minutes by building an automated pipeline"), not action-then-result. The outcome is the part a skim catches.
 - **Two-line cap per bullet.** A bullet that runs to three-plus lines is usually two ideas blended — split it or cut one.
 - **Word-count discipline.** A senior two-page resume lands well around **~700–800 words**. Much longer reads as unedited; much shorter often means real content was gutted to hit a number. Treat any external "target N words" note as an input to weigh, not a hard constraint (see the external-feedback workflow in `WORKFLOWS.md`).

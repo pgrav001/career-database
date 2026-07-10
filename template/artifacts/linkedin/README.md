@@ -23,6 +23,12 @@ LinkedIn is not a resume with a different skin. Its surfaces truncate, its searc
 
 The pipes feed LinkedIn's recruiter search; the closing clause keeps it from sounding like every other keyword-stuffed headline. A pure keyword string maximizes search surface but reads as generic — keep it as a fallback to A/B test if recruiter response is low, not the default.
 
+**Job titles** — the per-role Title field is a second keyword surface, separate from the headline, and most profiles waste it on the bare title. Append a parenthetical of role-relevant keywords:
+
+> `Senior Engineering Manager, Payments Platform (People Leadership | Distributed Systems | Fintech)`
+
+Pick 2–3 keywords that match how the target role is *searched for*, and vary them across roles so the profile covers more search terms in total. The Title field caps at ~100 characters — count it, since a truncated parenthetical looks broken. Lighter or no tag on early-career roles where the keywords matter less.
+
 **About** — this is voice/POV space, not a resume restatement:
 - The hook (first ~1–2 lines) must survive the **~270-character truncation** LinkedIn applies before "…see more." Front-load the most distinctive sentence; don't spend the opening on setup.
 - Speak to the reader, short paragraphs, one strong POV. Weave proof in lightly — one or two credibility anchors, not a wall of metrics.
