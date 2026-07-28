@@ -91,6 +91,30 @@ The per-opening directory is the submission set — everything an application ne
 
 Variant frontmatter discipline (the `based_on`, `diffs_from_canonical`, `do_not_propagate`, `evals_echoed`, `resolutions` fields) is spelled out in `CONVENTIONS.md`. The pattern enforces the canonical-vs-variant boundary so the two trees don't quietly bleed into each other.
 
+## The opportunity funnel: three layers, three weights
+
+Tracking has a gap in the middle if there are only two states — a company on a radar, and a committed application. Everything in between (a role that looks interesting but isn't a go, a posting waiting on a re-level, a company where a warm path might open) has nowhere to live. It either gets logged as an application it isn't, or it lives in chat and evaporates.
+
+Three layers, each with a different weight:
+
+| Layer | File | Granularity | Weight | What it holds |
+|---|---|---|---|---|
+| **Company** | `targets/companies.md` | Company | light | Why them, who you know, geo, strategic status |
+| **Opportunity** | `applications/watchlist.md` | A specific role / opening | light | The funnel — interesting but not committed |
+| **Application** | `applications/tracker.md` + `applications/<company>-<role-slug>/` | One application | heavy | Committed; the full machine ran |
+
+**The load-bearing rule: the heavyweight machine runs only at promotion.** Hiring-manager profile → binary evals → tailored variant → cover letter is expensive. Tying it to *tracking* means the user either does the whole thing for every interesting role (unsustainable) or tracks nothing (loses the pipeline). Decoupling them lets the watchlist stay nearly free.
+
+**Graduated response** is what makes the decoupling work — three response levels instead of two:
+
+- **Watch** — record only, no artifacts.
+- **Light-touch** — canonical resume plus a short candid note in the user's own voice. No variant, no eval profile.
+- **Full-tailor** — the per-opening machine.
+
+The middle level is the one most searches lack. It makes a decent-fit role cheap enough to act on without committing a full tailoring cycle, which matters most when the pipeline is thin and the alternative is doing nothing.
+
+**Promotion is trigger-based, not interest-based.** Each watchlist entry names the specific thing that would make it a go (a warm path appears, the role re-levels, the pipeline empties). Without a named trigger, entries sit at "still interested" forever and the funnel becomes a graveyard. Entries also carry a revisit-by date, and lapsing without a trigger is a valid reason to drop one.
+
 ## Why the operational layer matters
 
 The substrate is only useful if it survives across sessions. The operational files are the discipline:

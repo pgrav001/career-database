@@ -26,3 +26,9 @@ Defaults that have held up in practice — deviate deliberately, not by accident
 - **Role summaries earn their space.** A one-line summary under a role should explain the *unclear* — the scope, the day-to-day, what an outsider wouldn't infer from the title — not preview the bullets underneath it. If the summary just restates a bullet, cut it.
 - **The summary/highlights are the skim layer; the bullets are the detail layer.** They should share no phrasing — a claim proven in Highlights and repeated verbatim in a bullet wastes one of the two. Run a differentiation pass so each altitude carries distinct weight.
 - **Keep the source of truth in markdown; render to the presentation format.** Maintain content in a version-controlled `.md`, generate the designed PDF/docx from it, and note which rendered file is canonical vs. archived so "which version is current" is never ambiguous.
+
+## Build step: review before you render
+
+Run the anti-AI-tell review pass (`voice/writing-rules.md`, three-pass: draft → adversarial rule-by-rule review → rewrite) **before** regenerating the rendered deliverable. Rendering first means either shipping the tells or re-rendering after the fix.
+
+Then verify the rendered output physically — open the PDF and confirm the page count and that nothing reflowed badly. A content edit that pushes a two-page resume to a third page is a real regression that markdown review can't catch.

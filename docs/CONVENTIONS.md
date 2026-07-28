@@ -185,6 +185,20 @@ Example: a self-review sentence reads *"X and Y - grew the first technical IC7 i
 
 When you encounter sentence-level ambiguity in source text about who got which outcome, pause and ask. The minute of clarification saves an hour of correction-propagation later.
 
+## Every file says what it is
+
+A career database is read cold — by a future session with no context, or by the user months later. A file that opens straight into content forces the reader to infer its role from its path, and paths lie (an `artifacts/` file can be canonical, superseded, or a scratch draft).
+
+Three levels, each cheap:
+
+1. **Substrate files open with a purpose line.** One italic line under the H1 saying what the file holds and what it's for. This is the convention the templates already follow; keep it on files you create.
+2. **Directory READMEs declare what's canonical.** Any directory holding more than a couple of files — `artifacts/resumes/`, `artifacts/linkedin/`, `evidence/`, `applications/` — gets a README naming which files are live vs. archived, and what the file types in it mean. This is the single highest-value contextualization, because it's where "which version is current" actually gets answered.
+3. **Generated artifacts carry disambiguating frontmatter.** `type` / `variant` / `based_on` / `date` / `status` / `target`. Canonical artifacts say CANONICAL; variants say DRAFT or NOT-canonical plus `do_not_propagate`. Without this, five files all titled with the user's name are indistinguishable, and the wrong one gets sent.
+
+Exempt by nature: machine-generated logs and reports that title themselves, instruction files like `CLAUDE.md`, and anything under a `_legacy/` path.
+
+**Frontmatter beats a title when they conflict in effort.** A file whose frontmatter fully identifies it (type, status, target, date) is contextualized even if the body starts without an H1. Adding the H1 is polish; adding the frontmatter is the requirement.
+
 ## Naming conventions
 
 - **Files:** lowercase, kebab-case, role-prefixed when ambiguous

@@ -15,8 +15,9 @@ The user's story is about **how they're effective (behaviors + skills)**, **prov
 
 1. **Lead with the claim** (pick from `strengths.md`).
 2. **Prove with the example** (pull from `evidence/`).
-3. **Match the voice** (use patterns from `voice/self-voice.md`).
+3. **Match the voice** (use patterns from `voice/self-voice.md`; run the anti-AI-tell rules in `voice/writing-rules.md` — the two compose, and self-voice wins on the user's genuine markers).
 4. **Reference framing variants** (themes files have framing-per-audience).
+5. **Run the review pass before finalizing** — the three-pass check in `voice/writing-rules.md` (draft → adversarial rule-by-rule review → rewrite). Required for every outward artifact: resumes + variants, cover letters, LinkedIn, essays, and free-text application fields. Log the edits in the artifact's `writing_rules_applied` frontmatter.
 
 Avoid corporate hero voice ("spearheaded," "transformational impact," "passionate about"). Use specific over abstract. Honest about constraints. Lessons + reflection at the end.
 
@@ -25,6 +26,7 @@ Avoid corporate hero voice ("spearheaded," "transformational impact," "passionat
 - **When a new question / unknown comes up, ADD it to `OPEN_QUESTIONS.md`.** Don't bury it in a file's `## Open recall` and assume future-you will find it. The recall sections are fine for context-specific half-thoughts; OPEN_QUESTIONS is for the cross-cutting list.
 - **When making a structural / positioning decision, LOG it in `DECISIONS.md`.** Include rationale. Future sessions need this to avoid re-litigating.
 - **When you mention "we could build X" or "we're not building Y yet," LOG it in `OPPORTUNITIES.md`.** Don't leave it only in chat. What/Why-valuable/Trigger.
+- **When a new job opportunity surfaces that isn't being fully pursued yet, LOG it in `applications/watchlist.md`** — the funnel, *not* `tracker.md`. (Distinct from `OPPORTUNITIES.md` above, which is for database/product build-ideas.) The tracker is committed applications only; the heavyweight machine (hiring-manager profile → binary evals → tailored resume variant → cover letter) runs **only** on promotion from the watchlist, per the watchlist's promote rule.
 - **When making a time-sensitive claim, date it.** "As of YYYY-MM" on sentiment scores, comp, team size, etc.
 - **When citing a fact, note its provenance.** Especially when the difference between "confirmed by archive" and "user told me YYYY-MM-DD" matters.
 - **At the end of a working session, update `SESSION.md`.** Date, what we did, where things stand, what to do next.

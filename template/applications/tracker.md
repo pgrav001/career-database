@@ -1,6 +1,8 @@
 # Application Tracker
 
-> _Active and recent applications, with status. The per-application detail lives in `applications/per-application/{slug}.md`._
+> _**Committed applications only.** Active and recent, with status. The per-application detail lives in `applications/per-application/{slug}.md`._
+
+**Not-yet-committed opportunities go in `[[watchlist]]`, not here.** The tracker is the heavyweight layer — an entry here means the full machine ran (or is running): hiring-manager profile → binary evals → tailored variant → cover letter. Roles you're interested in, watching, or waiting on a trigger for belong in the watchlist until their trigger fires.
 
 ## Conventions
 

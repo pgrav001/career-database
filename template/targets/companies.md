@@ -1,6 +1,8 @@
 # Target Companies
 
-> _Named companies you're considering, with status, why, and who you know there._
+> _Named companies you're considering, with status, why, and who you know there. **Company-level and strategic** — a specific open role at one of these goes in `[[applications/watchlist]]` (the opportunity funnel), and a committed application goes in `[[applications/tracker]]`._
+
+⚠️ **Freshness:** company status here goes stale faster than anything else in the database, because it changes when an application moves and nobody remembers to update two files. When they disagree, `[[applications/tracker]]` wins — reconcile this file against it periodically.
 
 ## Conventions
 

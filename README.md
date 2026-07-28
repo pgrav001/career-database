@@ -90,8 +90,9 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full Claim → Proof 
 | **Proof** (what you did) | `evidence/*.md` | Quantified accomplishments backing the claims |
 | **Proof in narrative form** | `stories/*.md` | STAR-format behavioral interview material |
 | **Third-party proof** | `voice/peer-quotes.md` | Curated quotes from managers, peers, reports |
-| **Voice** | `voice/self-voice.md` | Your own writing patterns for tone-matching |
+| **Voice** | `voice/self-voice.md`, `voice/writing-rules.md` | Your own writing patterns for tone-matching, plus the AI tells to strip before shipping |
 | **Chronology** | `history/*.md`, `career-arc.md` | Background context, not headline material |
+| **Pipeline** | `targets/companies.md` → `applications/watchlist.md` → `applications/tracker.md` | Three layers, three weights: company radar, opportunity funnel, committed applications |
 | **Operational** | `SESSION.md`, `OPEN_QUESTIONS.md`, `DECISIONS.md`, `CLAUDE.md` | Session continuity + hygiene |
 
 ## Conventions
