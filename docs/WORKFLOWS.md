@@ -82,8 +82,31 @@ When generating a resume, LinkedIn About, cover letter, or interview answer:
 3. **Find the proof.** Pull supporting `evidence/*.md` files. Cross-reference `voice/peer-quotes.md` for quotes that prove the claims.
 4. **Pick the framing.** Each theme file has framing variants for different audiences — use the one that matches.
 5. **Apply the voice.** Use `voice/self-voice.md` patterns. Avoid the corporate hero voice ("spearheaded", "transformational impact").
-6. **Output to `artifacts/`.** Save the generated artifact in the relevant subfolder (`resumes/`, `linkedin/`, `cover-letters/`).
-7. **Update `applications/tracker.md`** if this is for a specific application.
+6. **Run the anti-AI-tell review pass** (below) before finalizing. Required for every outward artifact.
+7. **Output to `artifacts/`.** Save the generated artifact in the relevant subfolder (`resumes/`, `linkedin/`, `cover-letters/`).
+8. **Update `applications/tracker.md`** if this is for a specific application.
+
+### The anti-AI-tell review pass (required before finalizing)
+
+An artifact drafted by an assistant reads like one, and the user usually notices before a recruiter does. The tells are structural, not stylistic: stacked em-dash clauses, define-by-negation foils ("X, not Y"), broad-to-narrow restatement of one idea, empty intensifiers, and bare-label leads ("Next steps:"). None of them are wrong sentences. Together they are a signature.
+
+**Set up a rules file once.** Keep the ruleset at `voice/writing-rules.md` — the list of tells to strip, with a corrected move for each. A good starting point is Convivy's **Write Better** (prose) and **talk-better** (conversational replies) rulesets — <https://github.com/convivy/write-better>, MIT. Distill and adapt them into the user's own file rather than depending on the upstream copy; add user-specific rules as they surface.
+
+**How it composes with `voice/self-voice.md`:**
+
+- The writing rules are **subtractive** — they strip markers that read as machine-generated.
+- `self-voice.md` is **additive and authoritative** — it captures how the user actually writes.
+- **Precedence: self-voice wins.** If the user genuinely says "really excited," drops conversational asides, or uses the occasional em dash, those stay. Strip a tell only when it is the assistant's, not the user's. When unsure, check `self-voice.md`; if the marker lives there, it stays.
+
+**The pass is three steps, and step 2 is the one that gets skipped:**
+
+1. **Draft.**
+2. **Review as an adversary.** Assume at least one tell survived. Go rule by rule; either quote a still-violating line or clear the rule by name. "Looks clean" without reading each rule is a failed review.
+3. **Rewrite** from what the review flagged. Leave facts, numbers, and the user's genuine voice untouched.
+
+**Scope:** every outward artifact — resumes and variants, cover letters, LinkedIn copy, essays, and free-text application fields. Log which rules fired in the artifact's frontmatter (a `writing_rules_applied` field) so a later reader can tell the pass actually ran.
+
+**Why it's a build step and not a preference:** the failure mode is a user reading their own submitted cover letter and saying *"that's not even close to my voice."* At that point the artifact is out. The pass is cheap and it runs before shipping, not after.
 
 ## Incorporating external feedback (coach / mentor / recruiter review)
 
@@ -108,6 +131,25 @@ The discipline: **when content is cut completely — not just reworded — enume
 - **A silent factual softening.** Condensing "five named prior employers across three sectors" into one line can quietly introduce an inaccuracy (mislabeling a sector, implying a gap). Re-check the condensed line against the facts, not just against the word count.
 
 The user reviews the cut-list and can restore any item. This is the same "surface the tradeoff, user decides" contract as per-bullet review — applied to subtraction instead of substitution.
+
+## Running the opportunity funnel (watchlist → tracker)
+
+Before the per-opening machine runs, an opportunity has to earn it. The funnel is the cheap layer that decides which ones do. See `ARCHITECTURE.md` § "The opportunity funnel" for the three-layer model; this is the operating procedure.
+
+**When a new opportunity surfaces** (the user mentions a role, a posting shows up, a recruiter pings), the default is *not* to start a profile. Add it to `applications/watchlist.md` with the compact entry schema — source, fit, warm path, **trigger to advance**, planned response, revisit-by. That takes a minute and it's reversible. Starting the machine takes a session and it isn't.
+
+**The trigger is the field that matters.** "Interesting" is not a trigger; "if a referral opens up" and "if they repost it at Director level" are. An entry without a named trigger will sit unresolved forever, because there's no condition that would ever change its state.
+
+**The watchlist sweep** — run it whenever you do job-search work, or ad hoc weekly:
+
+1. **Prune** — anything past its revisit-by with no trigger fired moves to Dropped, with a one-line reason so it isn't re-litigated later.
+2. **Advance** — anything whose trigger fired moves up a tier, or promotes to `tracker.md`.
+3. **Triage** — new backlog captures get sorted into a tier.
+4. That's it. No profiles, no evals, no drafting. The sweep is deliberately shallow.
+
+**On promotion**, pick the response level before starting work — *light-touch* (canonical artifact plus a short candid note in the user's own voice) or *full-tailor* (the per-opening workflow below). Choosing this up front is what stops every promotion from defaulting to the expensive path.
+
+**Where candor goes on a reach role.** When the user is applying to something they know is a stretch on level or discipline, put the acknowledgment in a free-text field or a short note **in their own words**, and keep the resume and cover letter a straight, confident pitch. Hedging inside the primary artifacts weakens them without buying honesty credit; a candid side note buys the credit and costs the pitch nothing.
 
 ## Per-opening tailoring
 
@@ -189,6 +231,29 @@ The deliverable is a per-opening artifact pair — typically a resume plus a cov
 Variant artifacts must declare what makes them a variant — what they diverge from, on what dimensions, and what scope of propagation is and is not authorized. See the variant frontmatter schema in `CONVENTIONS.md`.
 
 The discipline matters because cross-opening drift is a real failure mode: a variant edit that's sharper for Company A may be wrong for Company B, and propagating variant changes to the canonical without intent can quietly damage the canonical's fit across the rest of the search. The `do_not_propagate` field on a variant is the guardrail.
+
+### Back-syncing corrections to the canonical (the periodic reconciliation)
+
+The `do_not_propagate` guardrail stops variant *tailoring* from leaking into the canonical. It does not cover the opposite failure, which is more common and quieter: a genuine **correction** made during variant work that never gets ported back, so the canonical stays wrong and every future variant re-inherits the error.
+
+The pattern looks like this. While tailoring for Company A the user reads a line and says "that's not accurate — I didn't build that, my team did." The variant gets fixed. The canonical doesn't. Three variants later the same line is still being corrected by hand, because the source it forks from still has it.
+
+**After a run of two or three variants, reconcile the canonical.** For every edit made in variant work, sort it into one of two buckets:
+
+| Bucket | Test | Action |
+|---|---|---|
+| **Correction** | Would this edit be right *regardless of which opening it was for*? Accuracy, honesty, attribution, verb calibration, a dropped overclaim. | **Port to the canonical.** It was never variant-scoped; it was a bug found in the variant. |
+| **Tailoring** | Is this edit right only because *this* JD emphasizes it? A keyword mirror, a re-ordered highlight, a de-duplication forced by a variant-only promotion. | **Leave it in the variant.** Porting it damages the canonical's fit for the rest of the search. |
+
+Log the reconciliation in `DECISIONS.md` with both lists — what was ported and what was explicitly *not* ported, with the reason. The "not ported" list matters as much as the ported one; without it, a future session re-opens the same question and may guess differently.
+
+**Signals that a correction is overdue for a back-sync:**
+
+- The same edit has been made in two different variants.
+- A variant's frontmatter flags an edit as "pending canonical fix" — that flag is a work item, not documentation.
+- The user corrects a factual or honesty claim mid-variant. Corrections to facts are almost never variant-scoped.
+
+**A reconciliation is also a good moment to re-read the canonical whole.** Variant work happens line by line, so it tends to miss document-level drift — a claim that's now proven twice, a number that's gone stale, a confirmed win that exists in the substrate but never made it onto the canonical at all. Reading the evidence files alongside the canonical is what surfaces those.
 
 ### Common pitfalls
 
@@ -350,6 +415,15 @@ Senior loops run 4–6 behavioral interviews. Most candidates have rich material
 
 Open Recall in `stories/` is for these. Each one is a story slot to fill.
 
+**How to fill a slot without draining the user:**
+
+1. **Scaffold from the substrate first.** Search `evidence/`, `themes/`, and existing `stories/` for a candidate before asking anything. Most slots are already covered by material on disk that just hasn't been shaped into a STAR.
+2. **Interview only on the genuine gap.** Bring the scaffold and ask about the part that's actually missing — usually the Task (what was specifically theirs) or the Reflection. Don't re-ask what the database already knows.
+3. **One scenario at a time.** A batch of behavioral prompts in a single message produces thin answers to all of them. Take the slot to completion, then move on.
+4. **Never force a weak story.** A slot with no real material is better left open than filled with something the user can't tell with conviction. Log it as still-open and let a better scenario surface later.
+5. **Calibrate the emotional register to the user's actual one.** Ask how it actually felt, and match that. A story written at a higher emotional pitch than the user genuinely carries reads as performed, and it collapses under the first follow-up question. "In the middle — I wanted it done, it wasn't catastrophic, I dropped it fairly quickly" is a register; write to it.
+6. **Write a telling note when two stories are adjacent.** Same tension, different shape is common — and in the room it means starting the wrong story and realizing it mid-answer. Name the neighbor and the distinction in both files.
+
 ### Tier 3 — Network activation
 
 - Pre-warm 3–5 references — short message, "I'm starting to look — would you take a call?"
@@ -364,10 +438,21 @@ Names, dates, exact numbers — nice-to-have, interview-relevant, fillable from 
 
 ### Tier 5 — Strategic positioning
 
-- POV / thesis 1-pager (senior loops ask "what's your view on the future of X")
-- Identity refinement (does the current claim still feel right?)
-- 30-second + 2-minute elevator pitches
-- Pressure-test the 6 strengths (are these *the* 6?)
+The tier that never feels urgent and is the one senior loops actually probe. Four deliverables:
+
+- **POV / thesis 1-pager** — senior loops ask "what's your view on the future of X." Thesis-led, ~400–500 words, with the causality restraint the substrate supports (claim what the user saw and did, not what the industry did as a result).
+- **Leadership / management philosophy** — a spoken-length core version (~130 words) plus an expanded one, with each claim mapped to a specific piece of evidence. An unmapped philosophy claim is a thing the user will get asked to prove and can't.
+- **Elevator pitches** — 30-second and 2-minute.
+- **Strengths pressure-test** — are these *the* right N? Which are weak enough to cut, and is there a pattern that's the most-evidenced thing in the database but isn't named as a strength at all?
+- **Identity refinement** — does the current claim still feel right?
+
+**These are talking points, not scripts.** A word-perfect paragraph the user is expected to deliver from memory comes out stilted, and they'll know it the first time they read it aloud. Write them as the beats and the anchor phrases — the things that must land, in the order they land best — and let the user's own words fill in around them. If a session produces a polished script, convert it to talking points before calling it done.
+
+**The user has to read them aloud.** This is the one Tier 5 step an assistant cannot do. Cadence problems are inaudible on the page: a clause that reads fine and doesn't come out of a real mouth, a sentence that needs a breath it doesn't have. Hand the drafts over with an explicit "read these out loud and cut whatever doesn't come out naturally," and treat them as unfinished until that pass happens.
+
+**Internal labels are internal.** Strength names, theme names, and positioning-pillar names are database vocabulary — compressed, often jargon-y, and useful precisely because they're shorthand. They read as consultant-speak when spoken. Keep a plain-voice gloss next to each label (how the user would actually say it to a person) and mark the label itself as never-surface-verbatim.
+
+**Build Tier 5 from the substrate, not from an interview.** By the time a database has evidence, themes, and stories, the philosophy and the POV are already in there implicitly. Draft them from what's on disk and bring the draft to the user to correct. Corrections on a concrete draft are fast and specific; a blank-page interview on "what's your leadership philosophy" is slow and produces generalities.
 
 ## Audit / consistency check
 
@@ -424,6 +509,21 @@ The audit is a deliverable the user reviews. The user decides what to action, in
 - Don't critique the user's self-assessment — the audit is database-vs-source, not user-vs-database.
 - Don't merge findings into existing files without the user's approval.
 - Don't include manager-side sections of reviews unless explicitly asked — the user's self-framing is the primary lens for an audit.
+
+## Database health check (mechanical integrity)
+
+A third, much cheaper audit. The consistency check above asks *is the substrate faithful to its sources*; the pressure-test below asks *does this artifact land the positioning*. The health check asks only **is the database internally coherent** — and unlike the other two it's scriptable, so run it whenever the user asks some version of "is this thing still in good shape?"
+
+**Four scans:**
+
+1. **Wikilink resolution.** Grep every `[[...]]` across all `.md` files and check each against the file tree. Expect false positives and triage them rather than "fixing" them: syntax examples in READMEs, the intentional to-write backlog (an unresolved link is a valid marker for a file worth writing), and historical log entries pointing at files that were later archived are all fine. What you're hunting is the **dangling reference to something that was supposed to exist** — a memory or file that got referenced repeatedly but never actually landed. Those are real and they hide well; a link cited a dozen times reads as settled fact.
+2. **Index currency.** Every index file against what it indexes: `stories/README.md` vs. the stories on disk, the cross-session memory index vs. the memory directory, any directory README vs. its directory.
+3. **Stale counts and numbers in prose.** Grep for spelled-out counts ("the six strengths," "42 skills," "three open questions"). These go stale silently the moment something is added, and they're quoted outward.
+4. **Orphan check.** Files nothing links to, and directories with no README saying what's canonical.
+
+**Report, then fix only the mechanical.** Broken counts, stale index entries, and dead pointers are safe to correct in place. Anything that turns out to be a *content* gap (a referenced file that never existed, a claim that two files disagree about) goes to the user — that's an authoring decision, not a repair.
+
+**A health check catches content drift as a side effect.** Sweeping every file for one mechanical reason means reading lines nobody has looked at in months, which is how you find the corrected fact that was only corrected in one place, the metric a later decision retired, or the duplicated sentence. Log those separately from the mechanical fixes; they're worth more.
 
 ## Positioning-pillar pressure-test (artifact vs. intended positioning)
 

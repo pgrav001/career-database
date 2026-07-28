@@ -27,6 +27,7 @@ Every artifact you help generate (resume bullet, LinkedIn copy, cover letter lin
 2. **Prove with the example.** Pull from `evidence/*.md` (specific quantified accomplishments) and `stories/*.md` (STAR narratives).
 3. **Match the voice.** Use patterns from `voice/self-voice.md` so the output sounds like the user wrote it.
 4. **Reference theme framing.** Themes files (`themes/*.md`) contain framing variants for different audiences.
+5. **Review before shipping.** Run the anti-AI-tell pass in `voice/writing-rules.md` (draft → adversarial rule-by-rule review → rewrite) on every outward artifact. Self-voice wins over the subtractive rules where they conflict — the user's genuine markers are voice, not padding. See `docs/WORKFLOWS.md` § Artifact generation.
 
 **Avoid:** opening with chronology ("I joined X in 2020...") or with a metric without a claim ("I scaled the team from 4 to 18..."). Chronology and metrics are the *proof layer*, not the *headline layer*.
 
@@ -103,6 +104,7 @@ Before ending a session:
 | `stories/*.md` | STAR-format behavioral narratives. |
 | `voice/peer-quotes.md` | Curated third-party quotes organized by what they prove. |
 | `voice/self-voice.md` | The user's actual writing voice. |
+| `voice/writing-rules.md` | The AI tells to strip before an artifact ships. Subtractive; `self-voice.md` wins on conflict. |
 | `identity.md` | Lane positioning + elevator pitches. |
 | `career-arc.md` | The through-line narrative across all roles. |
 | `history/*.md` | Chronological role context (background, not headline). |
@@ -114,7 +116,8 @@ Before ending a session:
 | `targets/role-criteria.md` | Filters for what role to take next. |
 | `targets/companies.md` | Target company list with status + why + who-you-know. |
 | `targets/recruiter-personas.md` | The lanes you're being recruited *for*. |
-| `applications/tracker.md` | Active application log. |
+| `applications/watchlist.md` | The opportunity funnel — interesting-but-not-committed roles, with a trigger to advance. Lightweight; feeds the tracker. |
+| `applications/tracker.md` | Committed applications only. Heavyweight — an entry means the full machine ran. |
 | `applications/<company>-<role-slug>/` | Per-opening submission set — variant resume + cover letter + audit + rendered deliverables, scoped to one specific JD. See `docs/ARCHITECTURE.md` for the canonical-vs-variant distinction. |
 | `artifacts/resumes/` | Canonical generalized resumes (the locked, broadly-tuned version each variant forks from). |
 | `artifacts/linkedin/` | Canonical generalized LinkedIn copy. |

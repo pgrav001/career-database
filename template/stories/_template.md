@@ -46,6 +46,14 @@ _(What you learned. What you'd do differently. This is the bit that distinguishe
 - **If they push on [X]:** _(How you'd handle a follow-up that goes there?)_
 - **Honest-about-weakness move:** _(One sentence you'd add if asked "what would you do differently?")_
 
+## Telling note (which story to use when)
+
+_(Fill this in when another story in the bank is adjacent — same tension, different shape. Name the neighbor, name the distinction, and say which prompt each one is the better answer to. Two stories that blur into each other in the moment are worse than one, because you'll start the wrong one and realize it mid-answer.)_
+
+- **Closest neighbor:** `[[stories/...]]`
+- **The distinction:** _(e.g. "that one is a model-mismatch story; this one is a magnitude-underestimation story")_
+- **Use this one when:** _(the prompt shape it fits best)_
+
 ## Linked evidence
 
 - `[[evidence/...]]` _(primary)_
