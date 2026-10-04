@@ -1,6 +1,6 @@
 # Career Database
 
-> _Single source of truth for everything that could matter to your job search._
+> _Single source of truth for your career: the substrate for a job search when you're in one, and the running record of your work between searches._
 
 This directory is the foundation. Resumes, LinkedIn copy, cover letters, and interview prep are **generated from here**, not maintained alongside it. When you remember something, the rule is: it lives here first, then propagates outward.
 
@@ -165,6 +165,7 @@ When in doubt, a `(as of YYYY-MM)` parenthetical is fine.
 2. Move any answered items in `OPEN_QUESTIONS.md` to the "Answered" section with date + answer.
 3. Add any new open questions discovered.
 4. Log any structural / positioning decisions in `DECISIONS.md`.
+5. If `SESSION.md` has passed ~500 lines, move older entries into `sessions-archive/{year}.md`. Archive by size, not on a schedule.
 
 ## What this directory is NOT
 
