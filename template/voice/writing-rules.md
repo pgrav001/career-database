@@ -76,6 +76,8 @@ Log which rules fired in the artifact's frontmatter (`writing_rules_applied:`) s
 - Validation opener, eager preamble, reflex sign-off → cut
 - Stacked hedges when a call was asked for → make the call
 - Headers on a two-line answer → prose
+- Tightened a claim for length → name the qualifier you dropped; restore it if it was what made the claim true
+- User's short note to a person turned into bullets → back to their prose
 
 ## Open recall
 

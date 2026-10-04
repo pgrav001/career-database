@@ -1,6 +1,6 @@
 ---
 name: career-database
-description: "Bootstrap or maintain a Claim→Proof career database. Use when the user wants to organize career evidence for a job search, build interview-prep substrate, or generate resumes / LinkedIn / cover letters from a durable foundation. The skill produces a markdown directory the user owns end-to-end; artifacts are downstream of the substrate, not stored alongside."
+description: "Bootstrap or maintain a Claim→Proof career database. Use when the user wants to organize career evidence for a job search, build interview-prep substrate, generate resumes / LinkedIn / cover letters from a durable foundation, or keep a running record of their work between searches. The skill produces a markdown directory the user owns end-to-end; artifacts are downstream of the substrate, not stored alongside."
 ---
 
 # career-database
@@ -18,6 +18,8 @@ Ask the user where their career database lives (default: `~/career/`).
   3. `README.md` — the Claim → Proof model and conventions
   4. `CLAUDE.md` — explicit hygiene rules for this database
   5. Files relevant to the current task
+
+  Then read the posture off `applications/tracker.md`. **Rows in § Active → active-search mode.** **§ Active empty (dormant banner) → dormant mode:** no Tier 1 urgency or interview prep by default, and any work anecdote the user mentions is capturable as evidence. See `docs/WORKFLOWS.md` § Between searches.
 
 ## Step 2 — Apply the Claim → Proof model
 
@@ -57,6 +59,8 @@ Every session, regardless of task:
 - **Open Recall promotion:** half-thoughts go in the per-file `## Open recall` section; cross-cutting blockers go in top-level `OPEN_QUESTIONS.md`.
 - **Date conversion:** convert relative dates ("Thursday", "last week") to absolute dates (ISO `YYYY-MM-DD`) before writing them down.
 - **Don't invent.** When something is unknown, leave a placeholder and add it to `OPEN_QUESTIONS.md` — don't fill the gap with plausible-sounding fiction.
+- **Claim integrity:** when tightening a claim, check that the dropped qualifier wasn't load-bearing. Before rewriting a line, check `DECISIONS.md` for a prior ruling, because corrected claims regress. When the user strikes a phrase, sweep it from every artifact. Run the pre-send provenance check before any resume goes out. See `docs/WORKFLOWS.md` § Claim integrity.
+- **Outcome honesty:** record outcomes as fact, label causes as inference, and write `reason not captured` when none was given.
 
 ## Step 4.5 — Cross-session memory (complement to the database)
 
@@ -86,12 +90,13 @@ Before ending a session:
 3. Add any new open questions surfaced this session.
 4. Log structural / positioning decisions in `DECISIONS.md` with rationale.
 5. If "we could build X" was mentioned but not built, log it in `OPPORTUNITIES.md` (what / why-valuable / trigger).
+6. If `SESSION.md` has passed ~500 lines, fold older entries into `sessions-archive/{year}.md`.
 
 ## File map (full reference)
 
 | Path | Purpose |
 |---|---|
-| `SESSION.md` | Where we left off + what to do next. Updated every session. |
+| `SESSION.md` | Where we left off + what to do next. Updated every session; older entries archive to `sessions-archive/{year}.md`. |
 | `OPEN_QUESTIONS.md` | Tier 1–5 prioritized list of blockers. |
 | `DECISIONS.md` | Append-only log of structural + positioning decisions. |
 | `OPPORTUNITIES.md` | "We could build X" notes — what / why-valuable / trigger. |

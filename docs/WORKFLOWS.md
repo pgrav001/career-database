@@ -108,6 +108,49 @@ An artifact drafted by an assistant reads like one, and the user usually notices
 
 **Why it's a build step and not a preference:** the failure mode is a user reading their own submitted cover letter and saying *"that's not even close to my voice."* At that point the artifact is out. The pass is cheap and it runs before shipping, not after.
 
+### Short notes to a person stay in prose
+
+When the user drafts a short outward note themselves (a recruiter email, an application free-text field, a reply to a hiring manager), their draft is the base text. Make surgical edits only: fix a repeated word, weave in at most one concrete detail, adjust a paragraph break. Name each change so the user can reject it on its own.
+
+**Don't restructure it into bullets, tables, or labeled sections.** A bulleted proof list reads as a candidate arguing a case; prose reads as a person talking. The pull toward structure is strongest when the content is evidence-dense, which is exactly when it does the most damage to voice. If evidence has to be added, write it as a sentence in the user's rhythm. Structure has to earn its place in anything under ~300 words that goes to a human; database files and prep docs are where structure belongs.
+
+### Attach the purpose to the mechanism
+
+Operational claims (built the process, ran the budget, grew the team, shipped the tooling) are the *how*. The outcome for the people the work served (customers, users, developers, patients) is the *why*. A resume heavy on the how reads as activity even when every line is true, and a reviewer will say something like *"they quantified the machine and left the result to my imagination."*
+
+The fix is usually to finish an existing claim rather than add a new one: "Built the intake process" becomes "Built the intake process that cut the wait for a first appointment from three weeks to four days." Two disciplines make it work:
+
+- **Sort evidence strictly into served-audience outcomes and internal outcomes.** Team efficiency, build time, headcount, funding, cost savings, and internal adoption are internal, however impressive. Only results the served audience experienced count as the why. Keep the trap list in the relevant evidence file so later drafts don't re-sort it.
+- **Assert the outcome, not the measurement.** "Measured success by whether customers finished the task" makes the measuring the claim. Lead with the result and let the number prove it.
+
+Check proposed cuts against this too. A reviewer can correctly recommend cutting a line by their own criterion while removing exactly the why the user considers their job.
+
+### Claim integrity: three ways a true claim ships in a false form
+
+Most bad claims in a mature database aren't invented. The facts are right, and the sentence on the page still asserts something false. Three mechanisms cause nearly all of it, and the defenses are different.
+
+**1. Compression drops the qualifier that made the claim true.** Tightening a line for length is where scope, count, and sequence words fall off:
+
+- *"the first analyst on the payments team"* → *"the company's first analyst"* (scope dropped; now a company-wide claim)
+- *two programs with a wide remit* → *"five functions"* (a remit became an org chart)
+- *three people promoted over four years* → *"three people I promoted"* (sequence read as simultaneity, and a sponsor read as the decider)
+
+The result is worse than a vague claim, because it's specific, confident, and checkable. **Defense:** when you tighten a claim, name the qualifier being dropped and check whether it was load-bearing.
+
+**2. Fixed claims regress.** A correction lives in `DECISIONS.md`; the next draft is written from the previous draft's prose and carries the old phrasing forward. The same line can need fixing three times. A second trap sits inside this one: **a log entry saying a fix was applied doesn't prove it landed.** Logs get written from intent. **Defense:** before rewriting a line, grep `DECISIONS.md` and the evidence file for a prior ruling. For claims that have regressed before, put an inline guard in the evidence file (*"Don't claim: sole ownership"*). Only write "applied to X" after reading X and seeing the fix there; otherwise write "attempted."
+
+**3. A strike is a verdict on the phrase, not on one artifact.** When the user cuts a phrase from one artifact, they give one reason because one is enough. Reasoning about whether *that* reason applies to the other artifacts assumes it was the complete set, and it usually wasn't. A claim the user dropped from their profile for conflation can fail on the resume for durability (*"that holds up right until the org was dissolved"*). **Defense:** sweep the phrase everywhere and report where else it lives. A claim that can't survive its own obvious follow-up question isn't doing its job.
+
+### The pre-send provenance check
+
+Run this before every send of a resume or variant. It's cheap enough to be unconditional.
+
+1. **For every number on the page, name the source** (review cycle, report, dashboard, offer letter) **and confirm the number sits under the role where it happened.** A current-role bullet carrying a figure from four years earlier is a common and invisible failure.
+2. **For every logged "fixed" on this artifact, confirm the fix in the file you will actually send.** Grep the source and the rendered output, not the log.
+3. **Sweep the user's recently struck phrases** against this file.
+
+The check only catches regressions when someone runs it. Put it in a `BEFORE-SEND` checklist next to the canonical so it isn't left to memory.
+
 ## Incorporating external feedback (coach / mentor / recruiter review)
 
 At some point someone credible — a career coach, a mentor, a friendly recruiter, a hiring-manager contact — gives the user a batch of feedback on an artifact ("your resume is too long," "add a keyword headline," "get more recommendations"). This feedback is valuable but it is **advice, not instructions**. The failure mode is applying it literally and mechanically, which produces an artifact that satisfies the note but damages the positioning.
@@ -302,11 +345,18 @@ outcome_stage: applied | recruiter | hm | loop | offer-stage
 - **Tier 1 changes:** if the post-mortem surfaces that your stated lane / filter / comp posture isn't landing, revisit Tier 1 OPEN_QUESTIONS before the next batch of applications.
 ```
 
+**Record the outcome honestly.** Outcomes arrive with less information than they seem to, and the gaps fill in on their own unless someone guards them:
+
+- **Separate the fact from the inference, and label the inference everywhere it travels.** "Rejected after the recruiter screen" is a fact. "Probably read as over-leveled" is a hypothesis, even a well-supported one. Write it as `inferred:` in the tracker, the post-mortem, and anywhere else it gets cited. Unlabeled, a plausible cause becomes a remembered fact within a few sessions, and later sessions read it as provenance.
+- **No reason given → `reason not captured`.** When the user reports an outcome without a cause ("those are all closed now"), record exactly that. Then ask, or add it to `OPEN_QUESTIONS.md`.
+- **Keep closed-to-silence and never-submitted apart from rejections.** A role that went silent tells you less than one that said no. A role you prepared and never submitted tells you nothing about your materials, because nobody read them. Filing either beside real rejections quietly corrupts any later read of what's working.
+- **A clean eval plus a good conversation plus a no is its own pattern.** When the materials scored well and the screen went well and the answer was still no, level or scope fit is usually the explanation left standing. That's a different and more actionable signal than a materials gap. Record it as a pattern, labeled as inference; whether it changes what the user applies to is the user's call.
+
 **Patterns across post-mortems.** After 3–5 outcomes, look across the post-mortem files for repeats. The same gap surfacing in three rejection post-mortems is a substrate-level signal — pull the change upstream rather than re-litigating it per variant. The same PASS holding up in three advance-to-next-round post-mortems is a strength worth foregrounding more in the canonical.
 
 **Don't write post-mortems for non-events.** A rejection that was clearly mismatched (the opening was the wrong fit and the user knew it before applying) doesn't need a full post-mortem — a one-line note in the tracker is enough. Reserve post-mortem-grade reflection for outcomes where the gap (positive or negative) wasn't predictable from the audit.
 
-**Update the tracker.** Whenever a post-mortem lands, update `applications/tracker.md` — move the row from Active to Decided with the outcome, link to the post-mortem file, capture the lesson in the tracker's `Reason` column (one phrase).
+**Update the tracker.** Whenever a post-mortem lands, update `applications/tracker.md` — move the row from Active to Closed with the outcome, link to the post-mortem file, capture the lesson in the tracker's `Reason` column (one phrase).
 
 ## Interview prep
 
@@ -327,7 +377,7 @@ This workflow runs against the substrate, not against the JD alone. The JD ancho
 1. Re-read the JD against the variant submitted (or the canonical, if no variant was tailored).
 2. Read the recruiter / role briefing materials if any (some recruiters share a loop schedule + interview-type breakdown — capture into the per-opening directory).
 3. Re-read `identity.md` and `targets/role-criteria.md` — confirm the lane / scope / filter is still what you want to project in this loop.
-4. List the interview types you know about (recruiter screen, hiring manager 1:1, technical depth round, behavioral round, cross-functional partner, exec round) and the likely topics for each.
+4. List the interview types you know about (recruiter screen, hiring manager 1:1, technical depth round, behavioral round, cross-functional partner, exec round) and the likely topics for each. **Cover a spread of prompt types per round, not one predicted angle.** Scaling, failure, disagreement, hands-on credibility, execution and metrics, and strategic judgment should each have an answer ready. An interviewer's title is weak evidence of what they'll ask; a prep doc built around one story inferred from it leaves the candidate exposed the moment the conversation goes elsewhere.
 5. Map each likely topic to the substrate file that holds the relevant material: behavioral → `stories/*.md`; technical depth → `evidence/*.md` + `history/*.md`; lane positioning → `identity.md` + `themes/*.md`; "tell me about yourself" → `voice/self-voice.md` + the latest opening-tailored variant's summary.
 
 **Day -2: pressure-test the load-bearing answers.**
@@ -359,8 +409,31 @@ The 24-hour capture is the load-bearing step. Skipping it loses the highest-qual
 
 - **Memorizing answers verbatim.** Memorized answers fall apart when the interviewer reframes the question. Substrate-grounded reconstruction holds up.
 - **Over-rehearsing the 2-minute version, never the 5-minute version.** Most behavioral prompts expand into 3-7 minute conversations with follow-ups. The 2-minute answer is the opener; the 5-minute version is the full story.
+- **Predicting the question from the interviewer's title.** It feels like targeting. In practice, predicted topics often never come up, and the round turns out to be a general conversation. Prepare breadth, then weight it lightly toward the interviewer's domain.
 - **Skipping the day-1 reset.** The night-before cram is a stress habit, not a prep technique. Trust the substrate; sleep instead.
 - **No post-interview capture.** The lesson lives for ~24 hours. After that the texture fades and the database doesn't compound.
+
+## Between searches: the offer close-out and dormant mode
+
+The database doesn't stop being useful when the search ends. Between searches it becomes the running record of the user's work, so the next search (or promotion case, or performance review) starts from evidence instead of memory. Recall of specific examples fades fast; work captured while it's fresh is the cheapest substrate the database will ever get.
+
+### The offer close-out
+
+When the user accepts an offer, close the search out in one session:
+
+1. **Tracker.** Move the accepted row to Closed as `closed-yes`. If the Active row carried a long running status cell, move it verbatim to `applications/<company>-<role-slug>/status-log.md` before trimming the row; it's the only record of how the process went.
+2. **Close the other threads honestly.** Anything still open gets a status from the user, with the reason recorded as given (see § After an outcome). Don't close threads with guessed reasons to tidy the tracker.
+3. **Bootstrap the new role.** Create `history/{company}.md` from `history/_role-template.md` and add a row to `history/00-timeline.md`. Start date, title, level, manager, and team size go in as soon as the user confirms them; anything unconfirmed is a placeholder plus an `OPEN_QUESTIONS.md` entry, not a guess. Evidence from this role uses a `{company}-` filename prefix.
+4. **Comp facts go in `comp.md` only.** Nowhere else, including `SESSION.md` and `DECISIONS.md`.
+5. **Add the dormant banner** to `tracker.md` once § Active is empty. That banner switches `CLAUDE.md` to dormant posture.
+6. **Leave the watchlist alone.** Whether to keep watching is the user's call; don't close it out or revive it on their behalf.
+7. **Log the close-out in `DECISIONS.md`** and archive `SESSION.md` if it has grown past ~500 lines. A search usually leaves it far past that.
+
+### Working in dormant mode
+
+- **Capture is ad hoc.** When the user mentions a piece of work in any session for any reason, offer to file it via the evidence workflow (`evidence/{company}-{slug}.md`, with provenance and as-of dates). This is what keeps the database current. It doesn't depend on a dedicated capture session.
+- **Don't import search urgency.** Tier 1 questions, interview prep, and pipeline triage stay quiet unless the user raises them.
+- **Re-entry is a tracker row.** When the user starts looking again, the first row in § Active flips the posture back. Before that first application, re-run Tier 1 (the answers will have changed), refresh `identity.md`, and audit the canonical artifacts against the new evidence.
 
 ## Session start ritual
 
@@ -383,6 +456,7 @@ Every session ends with the same 4 writes:
 3. **Add new open questions** surfaced this session.
 4. **Log structural / positioning decisions in `DECISIONS.md`** with rationale.
 5. **Add "we could build X" notes to `OPPORTUNITIES.md`** (what / why-valuable / trigger).
+6. **Archive if needed.** When `SESSION.md` passes ~500 lines, fold older entries into `sessions-archive/{year}.md`, keeping the latest few entries in place.
 
 If you skip the end ritual, the next session starts cold and you re-do work.
 
@@ -565,4 +639,5 @@ It catches a specific, common failure: an artifact that is individually true in 
 - **Skipping the session end ritual.** Next session starts cold and you waste time re-deriving.
 - **Burying cross-cutting questions in per-file Open Recall.** They never resurface. Promote to `OPEN_QUESTIONS.md`.
 - **Re-litigating decisions.** If it's in `DECISIONS.md`, read that first before reopening the question.
+- **Writing a new draft from the last draft.** That's how corrected claims come back. Draft from the evidence files, and check `DECISIONS.md` for prior rulings on any line you rewrite.
 - **Forgetting to date time-sensitive claims.** "Direct-report sentiment 95%" without a date is unverifiable; "Direct-report sentiment 95% (H2 2024)" is.

@@ -23,6 +23,8 @@ The architecture is opinionated. The conventions are explicit. The hygiene rules
 - A Tier 1–5 prioritization framework for "what should I work on first"
 - A `Claim → Proof` model that distinguishes *how you're effective* from *the chronological proof*
 - Hygiene rules (provenance, as-of dating, Open Recall promotion) that prevent drift
+- Claim-integrity guards for the ways true claims ship in false form: compression, regression, and unswept strikes, plus a pre-send provenance check
+- Two postures: **active search**, and **dormant** for once you've landed, when the database becomes the running record of your work so the next search starts from evidence instead of memory
 - The skill instructs Claude on the read-order, session ritual, and generation flow
 
 ## Install
@@ -111,7 +113,9 @@ See [`docs/WORKFLOWS.md`](docs/WORKFLOWS.md) for full detail. Major ones:
 
 - **Source mining:** drop raw artifact (resume, performance review, LinkedIn export) into `sources/inputs/`, add to `sources/inventory.md`, mine into the right layers
 - **Interview / brain-dump:** when the user wants to brain-dump an era or project in real time — the AI is scribe + interviewer, capturing verbatim into voice files and flushing at natural breakpoints
-- **Artifact generation:** lead with claim → pull proof → match voice → reference theme framing
+- **Artifact generation:** lead with claim → pull proof → match voice → reference theme framing → claim-integrity and provenance checks before sending
+- **Outcomes:** post-mortems that keep facts and inferences apart, so the pipeline read stays honest
+- **Between searches:** an offer close-out, then a dormant posture where any work anecdote becomes evidence
 - **Audit / consistency check:** periodically compare the database against source materials to surface drift, missing items, framing inconsistencies; report-only deliverable
 - **Session ritual:** start by reading `SESSION.md` + `OPEN_QUESTIONS.md`; end by updating `SESSION.md` + moving answered items + logging structural decisions in `DECISIONS.md`
 
